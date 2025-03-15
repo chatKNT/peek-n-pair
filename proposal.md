@@ -1,27 +1,38 @@
-# [Project Name]
+# [Peek 'N' Pair]
 
-Created by [team member], [team member], and [team member].
+Created by King McLeod and Tyreese Wray.
 
 ## 🚀 Mission statement
 
-Our application, [app name] is for [target audience]. It allows users to [what it does and why audience would use it]
+Our application, Peek 'N' Pair is for problem-solving/strategy game enthusiasts. It allows users to play a fun memory game with different themes and difficulties.
 
 ## API & React Router
 
-This application will use the [name of API] API. Below are the documentation and specific endpoints we intend to use and the front-end pages that will use them.
+This application will use the Dog, Rick and Morty, and Open Trivia Database API's. Below are the documentation and specific endpoints we intend to use and the front-end pages that will use them.
 
-- Link to API documentation: [Link goes here]
-- API endpoint #1
-  - Description of endpoint
-  - List of data values used by the endpoint
-- API endpoint #2
-  - Description of endpoint
-  - List of data values used by the endpoint
-- API endpoint #3
-  - Description of endpoint
-  - List of data values used by the endpoint
+- Link to API documentation: [Dog API](https://dog.ceo/dog-api/documentation/)
+- https://dog.ceo/api/breeds/image/random/{NUMBER}
+  - This will fetch an array of dog images
+  - We will use the `message`
 
-[If your API requires an API key, say so here.]
+- Link to API documentation: [Rick and Morty](https://rickandmortyapi.com/documentation)
+- https://rickandmortyapi.com/api/character/{NUMBER}
+  - This will fetch a single character object based on number input
+  - We will use `id`, `name`, `species`, and `image`
+- https://rickandmortyapi.com/api/character/[{NUMBER1},{NUMBER2}]  
+  - This will fetch an array of character objects based on the input of numbers
+  - For each character, we will use `id`, `name`, `species`, and `image`
+
+- Link to API documentation: [Open Trivia Database](https://opentdb.com/api_config.php)
+- https://opentdb.com/api.php?amount={NUMBER}
+  - This will fetch an object with a nested `results` array of a question or quetions based on number input
+  - We will use all the values in the `results` array: `type`, `difficulty`, `category`, `question`, `correct_answer` and `incorrect_answers`
+- https://opentdb.com/api.php?amount={NUMBER}&difficulty={OPTION}
+  - This will fetch an object with a nested `results` array of a question or questions based on number and difficulty input
+  - We will use all the values in the `results` array: `type`, `difficulty`, `category`, `question`, `correct_answer` and `incorrect_answers`
+- https://opentdb.com/api.php?amount={NUMBER}&category={NUMBER}&difficulty={OPTION}
+  - This will fetch an object with a nested `results` array of a question or questions based on number category, and difficulty input
+  - We will use all the values in the `results` array: `type`, `difficulty`, `category`, `question`, `correct_answer` and `incorrect_answers`
 
 **Example:**
 - https://api.artic.edu/api/v1/artworks
