@@ -132,6 +132,5 @@ To ensure that we can complete all core features of the application in 1 week, w
 
 Below, you can find wireframes for our project. Each wireframe shows a different page of our application as well as the key components of the application. Details such as specific text values or images are intentionally not included:
 
-[Wireframe for page 1]
+[Wireframe Link](https://miro.com/app/board/uXjVIReT-ZE=/?share_link_id=727011457490)
 
-[Wireframe for page 2]
