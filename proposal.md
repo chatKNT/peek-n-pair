@@ -25,13 +25,13 @@ This application will use the Dog, Rick and Morty, and Open Trivia Database API'
 
 - Link to API documentation: [Open Trivia Database](https://opentdb.com/api_config.php)
 - https://opentdb.com/api.php?amount={NUMBER}
-  - This will fetch an object with a nested `results` array of a question or quetions based on number input
+  - This will fetch an object with a nested `results` array of a question or questions based on number input
   - We will use all the values in the `results` array: `type`, `difficulty`, `category`, `question`, `correct_answer` and `incorrect_answers`
 - https://opentdb.com/api.php?amount={NUMBER}&difficulty={OPTION}
   - This will fetch an object with a nested `results` array of a question or questions based on number and difficulty input
   - We will use all the values in the `results` array: `type`, `difficulty`, `category`, `question`, `correct_answer` and `incorrect_answers`
 - https://opentdb.com/api.php?amount={NUMBER}&category={NUMBER}&difficulty={OPTION}
-  - This will fetch an object with a nested `results` array of a question or questions based on number category, and difficulty input
+  - This will fetch an object with a nested `results` array of a question or questions based on number category and difficulty input
   - We will use all the values in the `results` array: `type`, `difficulty`, `category`, `question`, `correct_answer` and `incorrect_answers`
 
 **Example:**
@@ -40,7 +40,7 @@ This application will use the Dog, Rick and Morty, and Open Trivia Database API'
   - For each artwork, I want the `id`, `title`, and `image_id`
 - https://api.artic.edu/api/v1/artworks/{id}
   - This will fetch a single artwork object
-  - I will use the `id`, `title`, `short_description`, `medium_display`, `place_of_origin` and `image_id`
+  - I will use the `id`, `title`, `short_description`, `medium_display`, `place_of_origin`, and `image_id`
 - https://api.artic.edu/api/v1/artworks/search?q={query}
   - This will fetch a list of artworks that relate to the search query
   - For each artwork, I will use the `id` and `title`
@@ -49,9 +49,10 @@ This application will use the Dog, Rick and Morty, and Open Trivia Database API'
 
 The application will feature the following frontend routes and core features:
 
-* On the `/example` page, users can...
-* On the `/example` page, users can...
-* On the `/example` page, users can...
+* On the `/startup` page, users can click the play button, which will lead them to the `/main` page, view their best times and rules, and change the site theme from light -> dark mode (carries to every page).
+* On the `/options` page, users can choose a theme from a list of categories and set a difficulty level.
+* On the `/game` page, users can see the cards loaded onto the page for them to interact with and match and a timer to track their best time.
+* On the `/game` page, if out of lives, users can answer a trivia question to regain a life and continue playing.
 
 **Example:**
 - On the `/artworks` page, users can view a grid of all artwork
@@ -63,9 +64,11 @@ The application will feature the following frontend routes and core features:
 
 If time permits, the following stretch features will be implemented in order of priority:
 
-* Users will be able to...
-* Users will be able to...
-* Users will be able to...
+* Users will be able to select/deselect whether they want to track their time in `/options` page
+ 
+* Users can select a difficulty that determines whether joker tiles are placed, increasing the likelihood of failure. (If joker tiles are clicked, a life is immediately deducted)
+
+* Users will be able to save their rankings to a global leaderboard through a database system.
 
 **Example:**
 * Users will be able to save and view favorited artworks using local storage
@@ -75,30 +78,55 @@ If time permits, the following stretch features will be implemented in order of 
 
 To ensure that we can complete all core features of the application in 1 week, we will aim to complete tasks according to the following timeline:
 
-**Day 1**
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+**Day 1: Project Setup & API Integration**
+- [ ] Initialize React project and install necessary dependencies 
+- [ ] Set up API fetching functions to get data from our endpoints
+- [ ] Test API calls to ensure proper data retrieval
+- [ ] Set up basic project structure (components, pages, assets)
+- [ ] Create JSON files for other categories
+- [ ] Implement basic navigation using React Router
 
-**Day 2**
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+**Day 2: UI Layout & Game Options**
+- [ ] Implement the /startup page with a play button, best times display, rules section, and theme toggle (light/dark mode)
+- [ ] Implement the /options page, allowing users to choose a theme (dogs, Rick & Morty) and a difficulty level
+- [ ] Store selected options in state or context
+- [ ] Start structuring the /game page with a card grid layout.
+- [ ] Add minimal styling to each page fonts, background, etc.
 
-**Day 3** (MVP due by the end of the day)
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+**Day 3: Game Logic & Matching System** (MVP due by the end of the day)
+- [ ] Implement the logic for flipping cards and checking for matches.
+- [ ] Track flipped cards, matched pairs, and game completion state.
+- [ ] Implement a system to deduct lives when a mismatch occurs.
+- [ ] Display the number of remaining lives visually.
+- [ ] Fetch trivia questions when lives reach zero and allow users to answer to regain a life.
+- [ ] Complete the design of the main and options page
+- [ ] Work on the structure of the main page(tiles and timer)
 
-**Day 4**
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
 
-**Day 5**
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
-- [ ] Ticket description and due date
+**Day 4: Advanced Features & Enhancements**
+- [ ] Implement animations for flipping cards, matching effects, and transitions
+- [ ] Implement a timer that tracks and stores the best time locally
+- [ ] Add Joker Tiles as an optional difficulty modifier that instantly removes a life if clicked
+- [ ] Implement proper API calls based on the selected game theme
+- [ ] Implement a game-over screen with restart and return-home options
+
+**Day 5: UI Polish & Testing**
+- [ ] Implement + Refine styling and improve overall UI/UX
+- [ ] Ensure mobile responsiveness and accessibility improvements
+- [ ] Implement local storage for saving best times and preferences
+- [ ] Optimize API requests by preloading images
+- [ ] Conduct a full playtest to identify and fix major bugs
+
+**Day 6: Debugging & Stretch Goals**
+- [ ] Implement a global leaderboard (if time permits) using local storage or a simple backend
+- [ ] Add sound effects and additional animations for a more engaging experience
+- [ ] Improve accessibility with ARIA attributes
+- [ ] Debug UI inconsistencies and optimize performance
+
+**Day 7: Deployment and Final Touches**
+- [ ] Prepare the app for deployment (GitHub Pages)
+- [ ] Optimize the production build for performance
+- [ ] Conduct final round of testing and code cleanup
 
 ## Wireframes of each page in your application
 
