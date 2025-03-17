@@ -4,6 +4,7 @@ import { handleFetch } from './adapters/handleFetch.js';
 import {
   getTriviaQuestions,
   getRickAndMortyPictures,
+  getDogPictures,
 } from './adapters/apiAdapters.js';
 
 const testHandleFetch = async () => {
@@ -18,10 +19,13 @@ const testHandleFetch = async () => {
 
 // Test your adapter functions here
 const testAdapters = async () => {
-  const triviaTuple = await getTriviaQuestions();
+  const triviaTuple = await getTriviaQuestions(8, 'easy');
   const ramTuple = await getRickAndMortyPictures([1, 2, 3, 4, 5]);
+  const dogTuple = await getDogPictures(8);
 
-  console.log(ramTuple);
+  console.log(triviaTuple);
+  //   console.log(ramTuple);
+  //   console.log(dogTuple);
 };
 
 // testHandleFetch();
