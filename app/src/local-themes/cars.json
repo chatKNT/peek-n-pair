@@ -1,0 +1,52 @@
+{
+  "cars": [
+    {
+      "name": "Tesla Model S",
+      "title": "Electric Performance",
+      "description": "A luxury electric sedan with cutting-edge technology.",
+      "image": "https://static0.carbuzzimages.com/wordpress/wp-content/uploads/2024/03/1074739-35.jpg"
+    },
+    {
+      "name": "Lamborghini Aventador",
+      "title": "Supercar",
+      "description": "A high-performance supercar with a V12 engine.",
+      "image": "https://img1.bonhams.com/image?src=Images/live/2022-09/22/25259814-2-35.jpg&left=0.060000000000&right=0.950000000000"
+    },
+    {
+      "name": "Ford Mustang",
+      "title": "American Muscle",
+      "description": "A classic American muscle car with powerful performance.",
+      "image": "https://di-uploads-pod39.dealerinspire.com/kennyrossfordsouth/uploads/2024/06/2025-Ford-Mustang-GTD_exterior_01.jpg"
+    },
+    {
+      "name": "Porsche 911",
+      "title": "Luxury Sports Car",
+      "description": "A high-end sports car known for speed and design.",
+      "image": "https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspbWvanYb%255y%25oq%25vSTmjMXD4qAZeoNBPUSfUx4RmHlCgI7Zl2dioCLafQDcFGDTMYnfurnN65yPewFb2CvNzxUGqA7fQrmeOJUPYDImTB8VuyY0oVk0DBRl2vzpQNqjdtAsvyJ5I"
+    },
+    {
+      "name": "Bugatti Chiron",
+      "title": "Hypercar",
+      "description": "An engineering marvel with an incredible top speed.",
+      "image": "https://www.topgear.com/sites/default/files/2023/08/Bugatti%20Chiron%20Super%20Sport%20Golden%20Era_material%20under%20embargo%20%281%29.jpg"
+    },
+    {
+      "name": "Chevrolet Corvette",
+      "title": "Legendary Performance",
+      "description": "An iconic American sports car with a mid-engine layout.",
+      "image": "https://www.chevrolet.com/content/dam/chevrolet/na/us/english/index/vehicles/2025/performance/corvette-z06/mov/01-images/2025-z06-masthead-01.png?imwidth=1200"
+    },
+    {
+      "name": "McLaren P1",
+      "title": "Hybrid Hypercar",
+      "description": "A futuristic hybrid hypercar with insane aerodynamics.",
+      "image": "https://img2.bonhams.com/image?src=Images/live/2016-05/16/24055307-1-10.jpg"
+    },
+    {
+      "name": "Ferrari LaFerrari",
+      "title": "Hybrid Ferrari",
+      "description": "Ferrari's limited-production hybrid hypercar.",
+      "image": "https://cdn.ferrari.com/cms/network/media/img/resize/6673fe6251b1d700111f8d73-laferrari_20240627_cover_1300x730_v2"
+    }
+  ]
+}

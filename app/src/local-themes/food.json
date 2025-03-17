@@ -1,0 +1,52 @@
+{
+  "food": [
+    {
+      "name": "Sushi",
+      "title": "Japanese Cuisine",
+      "description": "Delicious rice rolls filled with fresh seafood and vegetables.",
+      "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.platingsandpairings.com%2Fvegetarian-sushi-recipe%2F&psig=AOvVaw2gRtlYnmTMlk9IUCK6UCI-&ust=1742320579653000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCMjntYzYkYwDFQAAAAAdAAAAABAW"
+    },
+    {
+      "name": "Pizza",
+      "title": "Italian Classic",
+      "description": "A popular dish featuring a baked crust with cheese and toppings.",
+      "image": "https://cdn.shopify.com/s/files/1/0274/9503/9079/files/20220211142754-margherita-9920_5a73220e-4a1a-4d33-b38f-26e98e3cd986.jpg?v=1723650067"
+    },
+    {
+      "name": "Burger",
+      "title": "American Favorite",
+      "description": "A grilled beef patty served in a bun with toppings.",
+      "image": "https://reneenicoleskitchen.com/wp-content/uploads/2023/04/Bacon-Avocado-Ground-Beef-Burger-18-e1713444843311.jpg"
+    },
+    {
+      "name": "Pasta",
+      "title": "Italian Delight",
+      "description": "A dish made with wheat noodles and rich sauces.",
+      "image": "https://easyfamilyrecipes.com/wp-content/uploads/2024/08/Garlic-Parmesan-Chicken-Pasta-Recipe.jpg"
+    },
+    {
+      "name": "Ramen",
+      "title": "Japanese Noodles",
+      "description": "A bowl of flavorful broth with noodles and toppings.",
+      "image": "https://www.modernfarmhouseeats.com/wp-content/uploads/2021/03/chili-lime-shrimp-ramen-2-scaled.jpg"
+    },
+    {
+      "name": "Tacos",
+      "title": "Mexican Street Food",
+      "description": "Soft or hard shells filled with meat, cheese, and veggies.",
+      "image": "https://www.cookwithmanali.com/wp-content/uploads/2023/07/Vegetarian-Corn-Tacos.jpg"
+    },
+    {
+      "name": "Steak",
+      "title": "Grilled Perfection",
+      "description": "A juicy cut of beef, cooked to perfection.",
+      "image": "https://www.heathrilesbbq.com/cdn/shop/articles/wagyu_denver_steaks_blog_bf1b7ede-f02b-4fbb-abb7-cefb46c7503f.jpg?v=1668807435"
+    },
+    {
+      "name": "Ice Cream",
+      "title": "Frozen Treat",
+      "description": "A sweet, creamy dessert in various flavors.",
+      "image": "https://www.thespruceeats.com/thmb/QjCQ4RTjmnhrovGkuJWzZCXYFX8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-90053856-588b7aff5f9b5874ee534b04.jpg"
+    }
+  ]
+}

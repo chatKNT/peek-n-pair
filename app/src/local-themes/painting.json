@@ -1,0 +1,52 @@
+{
+  "paintings": [
+    {
+      "name": "Starry Night",
+      "title": "Vincent van Gogh",
+      "description": "A famous post-impressionist painting depicting a swirling night sky.",
+      "image": "https://www.mom.org/media/W1siZiIsIjQ2NzUxNyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg?sha=314ebf8cc678676f"
+    },
+    {
+      "name": "Mona Lisa",
+      "title": "Leonardo da Vinci",
+      "description": "A portrait of a woman with an enigmatic expression.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/800px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"
+    },
+    {
+      "name": "The Persistence of Memory",
+      "title": "Salvador Dalí",
+      "description": "A surrealist painting featuring melting clocks.",
+      "image": "https://uploads1.wikiart.org/00475/images/salvador-dali/w1siziisijm4njq3mcjdlfsiccisimnvbnzlcnqilcitcxvhbgl0esa5mcatcmvzaxplidiwmdb4mjawmfx1mdazzsjdxq.jpg!Large.jpg"
+    },
+    {
+      "name": "The Scream",
+      "title": "Edvard Munch",
+      "description": "An expressionist masterpiece conveying existential angst.",
+      "image": "https://www.edvardmunch.org/assets/img/paintings/the-scream.jpg"
+    },
+    {
+      "name": "Girl with a Pearl Earring",
+      "title": "Johannes Vermeer",
+      "description": "A baroque painting capturing a mysterious young woman.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/1200px-1665_Girl_with_a_Pearl_Earring.jpg"
+    },
+    {
+      "name": "The Last Supper",
+      "title": "Leonardo da Vinci",
+      "description": "A Renaissance mural painting depicting Jesus and his disciples.",
+      "image": "https://media-1.jesus.net/media/4210/Last-Supper-Leonardo-Da-Vinci-(1).jpg"
+    },
+    {
+      "name": "The Birth of Venus",
+      "title": "Sandro Botticelli",
+      "description": "A mythological painting showing Venus emerging from the sea.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1200px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg"
+    },
+    {
+      "name": "American Gothic",
+      "title": "Grant Wood",
+      "description": "A painting symbolizing rural American values.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg"
+    }
+  ]
+}
