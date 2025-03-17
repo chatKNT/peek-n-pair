@@ -2,6 +2,23 @@
 
 import { handleFetch } from './handleFetch.js';
 
+const ramBaseUrl = `https://rickandmortyapi.com/api`;
+
+export const getRickAndMortyPictures = async (characterIds = []) => {
+  let ramEP = `${ramBaseUrl}/character/`;
+
+  if (characterIds.length) {
+    ramEP += `${characterIds.join(',')}`;
+    const [data, error] = await handleFetch(ramEP);
+
+    return [data, error];
+  } else {
+    ramEP += `${characterIds}`;
+    const [data, error] = await handleFetch(ramEP);
+    return [data.results, error];
+  }
+};
+
 export const getTriviaQuestions = async (
   amount = 1,
   difficulty = '',
