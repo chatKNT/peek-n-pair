@@ -1,42 +1,68 @@
+/** @format */
+
+/* Ensure #root takes full height and centers content */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Full viewport height */
+  width: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Default styles (Mobile First) */
+body {
+  font-size: 16px;
+  background-color: #f8f9fa; /* Light background */
+  color: #333; /* Dark text for readability */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* DON'T TOUCH THIS YET UNTIL MOBILE DESIGN IS FINISHED FIRST  */
+/* Small Devices (≤ 375px) */
+@media (max-width: 375px) {
+  body {
+    font-size: 14px;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Medium Devices (376px - 480px) */
+@media (min-width: 376px) and (max-width: 480px) {
+  body {
+    font-size: 16px;
   }
 }
 
-.card {
-  padding: 2em;
+/* Large Phones & Small Tablets (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  body {
+    font-size: 18px;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+/* Tablets & Small Laptops (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  body {
+    font-size: 20px;
+    max-width: 90%;
+    margin: auto;
+  }
+}
+
+/* Laptops & Desktops (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  body {
+    font-size: 22px;
+    max-width: 80%;
+  }
+}
+
+/* Large Screens (1280px+) */
+@media (min-width: 1280px) {
+  body {
+    font-size: 24px;
+    max-width: 70%;
+  }
 }
