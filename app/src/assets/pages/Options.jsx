@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Button from '../components/Button.jsx';
+import { Link } from 'react-router-dom';
 
 const Options = () => {
   return (
     <body>
-      <Button />
+      <Link to="/">
+        <Button text={'Home'} />
+      </Link>
       <Button text={'Dark'} />
       <div className="page-backdrop">
         <div className="options-preview"></div>
@@ -14,6 +17,9 @@ const Options = () => {
         <Button text={'Theme'} />
         <Button text={'Difficulty'} />
         <Button text={'Track Time?'} />
+        <Link to="/game">
+          <Button text={'Confirm'} />
+        </Link>
       </div>
     </body>
   );
