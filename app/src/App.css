@@ -30,6 +30,17 @@ body {
   border-radius: 2.5%;
   height: 80vh;
   width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.peeknpair-logo {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  height: 700px;
+  width: 700px;
 }
 
 /* DON'T TOUCH THIS YET UNTIL MOBILE DESIGN IS FINISHED FIRST  */
