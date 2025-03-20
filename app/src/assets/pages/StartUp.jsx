@@ -10,9 +10,11 @@ const StartUp = () => {
         <div className="startup-buttons">
           <Button text={"Best Times"} className={"best-times-button"} />
           <Link to="/options">
-            <button className="startup-play-button">PLAY</button>
+            <button className="startup-play-button">Play</button>
           </Link>
-          <Button text={"Rules"} className={"rules-button"} />
+          <Link to="/rules">
+            <Button text={"Rules"} className={"rules-button"} />
+          </Link>
         </div>
       </div>
     </div>
