@@ -5,6 +5,8 @@ import Button from '../components/Button.jsx';
 import { Link } from 'react-router-dom';
 
 const Options = () => {
+  const [options, setOptions] = useState('');
+
   return (
     <body>
       <Link to="/">
