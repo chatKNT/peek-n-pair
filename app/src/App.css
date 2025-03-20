@@ -13,9 +13,9 @@
 /* Default styles (Mobile First) */
 body {
   font-size: 16px;
-  background-color: #ca86e0; /* Light background */
-  color: #333; /* Dark text for readability */
-  font-family: Arial, sans-serif;
+  background-color: #a560cc;
+  color: #333;
+  font-family: 'Poppins', Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -27,12 +27,68 @@ body {
 
 .page-backdrop {
   background-color: #fefcf3;
-  border-radius: 2.5%;
-  height: 80vh;
-  width: 80vw;
+  border-radius: 15px;
+  height: 75vh;
+  width: 85vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* Pushes content to the bottom */
+  /* box-shadow: 8px 8px 8px black; */
+  /* padding: 20px; */
+  padding-bottom: 10px; /* Extra space at the bottom */
+}
+
+button {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 18px;
+  margin: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.startup-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: -55px; /* Adds spacing from the bottom */
+}
+
+.startup-play-button {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  background-color: #fada30;
+  border: 0;
+  padding: 8px;
+}
+
+.rules-button {
+  background-color: #6495ed;
+  box-shadow: 4px 4px 0px black;
+}
+
+.best-times-button {
+  background-color: #ff8c00;
+  box-shadow: -4px 4px 0px black;
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+}
+
+.lightdark-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #000;
+  color: #fff;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 8px;
 }
 
 .peeknpair-logo {
