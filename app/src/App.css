@@ -25,14 +25,55 @@ body {
   width: 100vw;
 }
 
+/* The white background */
 .page-backdrop {
   background-color: #fefcf3;
   border-radius: 2.5%;
-  height: 80vh;
+  height: 75vh;
   width: 80vw;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 8px 8px 0px black;
+  padding: 20px;
+}
+
+/* all buttons */
+button {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 4px 4px 0px black;
+}
+
+/* button colors */
+.startup-play-button {
+  background-color: #ffd700; /* Yellow */
+}
+
+.rules-button {
+  background-color: #6495ed; /* Blue */
+}
+
+.best-times-button {
+  background-color: #ff8c00; /* Orange */
+}
+
+/* Dark Mode Button */
+.lightdark-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #ffd700;
+  color: #fff;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 8px;
 }
 
 .peeknpair-logo {
