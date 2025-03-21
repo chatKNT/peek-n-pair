@@ -32,10 +32,10 @@ body {
   width: 85vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 10px;
-  margin-top: 50px; /* Push it below buttons */
+  align-items: flex-start; /* Align items to the left */
+  justify-content: flex-end; /* Push content to the bottom */
+  padding-bottom: 10px; /* Extra space at the bottom */
+  padding-left: 10px; /* Add padding to shift content from the left */
 }
 
 button {
@@ -83,11 +83,11 @@ button {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: #000;
-  color: #fff;
+  background-color: #fada30;
+  color: #000000;
   padding: 8px 15px;
   font-size: 14px;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 /* Game Page Styling */
@@ -143,6 +143,59 @@ button {
   width: 700px;
 }
 
+.option-button {
+  margin: 0.3rem;
+  width: 40vw;
+  font-size: 1rem;
+}
+
+.options-navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  top: 0;
+  left: 0;
+}
+
+.options-navbar .lightdark-button {
+  padding: 10px 18px;
+  margin-top: 0;
+}
+
+/* Option group styling */
+.option-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+  margin-bottom: 5px; /* Reduce spacing between elements */
+}
+
+.dropdown {
+  position: absolute;
+  top: 40px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.dropdown button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.dropdown button:hover {
+  background-color: lightgray;
+  
 /* New styles for data preview and grid container */
 .data-preview {
   width: 80%;
