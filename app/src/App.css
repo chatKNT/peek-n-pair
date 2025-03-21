@@ -195,7 +195,8 @@ button {
 
 .dropdown button:hover {
   background-color: lightgray;
-  
+}
+
 /* New styles for data preview and grid container */
 .data-preview {
   width: 80%;
