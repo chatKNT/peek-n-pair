@@ -15,7 +15,7 @@ body {
   font-size: 16px;
   background-color: #a560cc;
   color: #333;
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -52,14 +52,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 81vw;
   margin-top: auto;
   margin-bottom: -55px; /* Adds spacing from the bottom */
 }
 
 .startup-play-button {
-  height: 4rem;
-  width: 4rem;
+  height: 4.5rem;
+  width: 4.5rem;
   border-radius: 50%;
   background-color: #fada30;
   border: 0;
@@ -69,11 +69,33 @@ button {
 .rules-button {
   background-color: #6495ed;
   box-shadow: 4px 4px 0px black;
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+  /* width: 28vw; */
 }
 
 .best-times-button {
   background-color: #ff8c00;
   box-shadow: -4px 4px 0px black;
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+}
+
+.categories-button,
+.difficulty-button {
+  background-color: #ff8c00;
+  box-shadow: -4px 4px 0px black;
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+}
+
+.theme-button,
+.track-time-button {
+  background-color: #6495ed;
+  box-shadow: 4px 4px 0px black;
   white-space: nowrap;
   text-align: center;
   display: inline-block;
@@ -90,7 +112,7 @@ button {
   border-radius: 4px;
 }
 
-/* Game Page Styling */
+/* Game.jsx Page Styling */
 .game-page-body {
   display: flex;
   flex-direction: column;
@@ -143,6 +165,7 @@ button {
   width: 700px;
 }
 
+/* Options.jsx Page Styling */
 .option-button {
   margin: 0.3rem;
   width: 40vw;
@@ -195,7 +218,8 @@ button {
 
 .dropdown button:hover {
   background-color: lightgray;
-  
+}
+
 /* New styles for data preview and grid container */
 .data-preview {
   width: 80%;
@@ -220,6 +244,20 @@ button {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: flex-end; /* Ensures the Confirm button stays at the bottom */
+  background-color: black;
+  width: 35vw; /* Increase size */
+  height: 35vh; /* Increase size */
+  border: 15px solid #fada30;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
 }
 
 /* DON'T TOUCH THIS YET UNTIL MOBILE DESIGN IS FINISHED FIRST  */

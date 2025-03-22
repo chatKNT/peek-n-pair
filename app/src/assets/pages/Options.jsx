@@ -64,22 +64,25 @@ const Options = () => {
       </div>
 
       <div className="page-backdrop">
-        <Link
-          to="/game"
-          state={{
-            category: selectedCategory,
-            theme: selectedTheme,
-            difficulty: selectedDifficulty,
-          }}
-          // onClick={() => {
-          //   console.log("User Selections:");
-          //   console.log("Category:", selectedCategory);
-          //   console.log("Theme:", selectedTheme);
-          //   console.log("Difficulty:", selectedDifficulty);
-          // }}
-        >
-          <Button text={'Confirm'} />
-        </Link>
+        <div className="selection-container">
+          {/* TODO: ADD GUARD CLAUSE SO IF ONE OF THE STATES ARE MISSING THEY CAN'T MOVE ON TO THE GANE PAGE */}
+          <Link
+            to="/game"
+            state={{
+              category: selectedCategory,
+              theme: selectedTheme,
+              difficulty: selectedDifficulty,
+            }}
+            // onClick={() => {
+            //   console.log("User Selections:");
+            //   console.log("Category:", selectedCategory);
+            //   console.log("Theme:", selectedTheme);
+            //   console.log("Difficulty:", selectedDifficulty);
+            // }}
+          >
+            <Button text={'Confirm'} />
+          </Link>
+        </div>
 
         <div className="options-preview"></div>
 
@@ -88,7 +91,7 @@ const Options = () => {
           <Button
             text={'Categories'}
             onClick={() => toggleDropdown('categories')}
-            className={'option-button'}
+            className={'option-button categories-button'}
           />
           {dropdowns.categories && (
             <div className="dropdown">
@@ -109,7 +112,7 @@ const Options = () => {
           <Button
             text={'Theme'}
             onClick={() => toggleDropdown('theme')}
-            className={'option-button'}
+            className={'option-button theme-button'}
           />
           {dropdowns.theme && selectedCategory && (
             <div className="dropdown">
@@ -128,7 +131,7 @@ const Options = () => {
           <Button
             text={'Difficulty'}
             onClick={() => toggleDropdown('difficulties')}
-            className={'option-button'}
+            className={'option-button difficulty-button'}
           />
           {dropdowns.difficulties && (
             <div className="dropdown">
@@ -146,7 +149,10 @@ const Options = () => {
         </div>
 
         {/* <Button text={'Difficulty'} /> */}
-        <Button text={'Track Time?'} className={'option-button'} />
+        <Button
+          text={'Track Time?'}
+          className={'option-button track-time-button'}
+        />
       </div>
     </div>
   );
