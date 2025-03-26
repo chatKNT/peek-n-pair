@@ -8,9 +8,13 @@ import { useEffect, useState } from "react";
 const Game = () => {
   // Initialize with single set of paintings (not duplicated yet)
   const [cards, setCards] = useState([]);
+  //tracks flipped cards
   const [flipped, setFlipped] = useState([]);
+  //if two cards are matched then this state will update
   const [solved, setSolved] = useState([]);
+  //gameboard, if two cards are clicked, then it will be disabled
   const [disabled, setDisabled] = useState(false);
+  //if all cards are solved then the game will end
   const [won, setWon] = useState(false);
 
   // Fisher-Yates shuffle algorithm
@@ -34,7 +38,7 @@ const Game = () => {
 
     const shuffledCards = shuffleArray(pairedCards);
 
-    // Update all relevant states
+    // Update all relevant states when the game restarts
     setCards(shuffledCards);
     setFlipped([]);
     setSolved([]);
@@ -51,6 +55,8 @@ const Game = () => {
   //   console.log("Current cards:", cards.length, cards);
   // }, [cards]);
 
+  const handleClick = () => {};
+
   return (
     <div>
       <div className="game-page-body">
@@ -64,7 +70,7 @@ const Game = () => {
         <div className="game-page-backdrop">
           <div className="grid-container">
             {cards.map((item) => (
-              <div className="card-image" key={item.id}>
+              <div className="card-image" key={item.id} onClick={handleClick}>
                 <img src={item.imgSrc} alt={item.name} />
               </div>
             ))}

@@ -4,24 +4,23 @@ import {
   getDogPictures,
   getRickAndMortyPictures,
   getTriviaQuestions,
-} from './apiAdapters';
+} from "./apiAdapters";
 
 // TEMP: fetch game images based on users options from Options.jsx Page
 export const fetchGameImages = async (category, theme) => {
   let images = [];
 
-  if (category === 'Animals' && theme === 'Dogs') {
+  if (category === "Animals" && theme === "Dogs") {
     const [data, error] = await getDogPictures(6);
     if (!error) images = data.message;
-  } else if (category === 'Movies/Shows' && theme === 'Rick and Morty') {
+  } else if (category === "Movies/Shows" && theme === "Rick and Morty") {
     const [data, error] = await getRickAndMortyPictures([1, 2, 3, 4, 5, 6]);
     if (!error) images = data.map((char) => char.image);
-  } else if (category === 'Miscellaneous') {
+  } else if (category === "Miscellaneous") {
     // Example: Fetch Trivia images
-    const [data, error] = await getTriviaQuestions(6, '', '');
+    const [data, error] = await getTriviaQuestions(6, "", "");
     if (!error) images = data.map((item) => item.image);
   }
-
   return images;
 };
 
