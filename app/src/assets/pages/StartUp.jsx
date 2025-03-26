@@ -5,12 +5,11 @@ import Button from "../components/Button.jsx";
 const StartUp = () => {
   return (
     <div>
-
-      <Button text={'DARK MODE'} className={'lightdark-button'} />
+      <Button text={"DARK MODE"} className={"lightdark-button"} />
       <div className="page-backdrop">
         <div className="startup-buttons">
           <Link to="/best-times">
-            <Button text={'Best Times'} className={'best-times-button'} />
+            <Button text={"Best Times"} className={"best-times-button"} />
           </Link>
 
           <Link to="/options">
