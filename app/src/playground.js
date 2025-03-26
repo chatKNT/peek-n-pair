@@ -19,12 +19,12 @@ const testHandleFetch = async () => {
 
 // Test your adapter functions here
 const testAdapters = async () => {
-  const triviaTuple = await getTriviaQuestions(8, 'easy');
-  const ramTuple = await getRickAndMortyPictures([1, 2, 3, 4, 5]);
-  const dogTuple = await getDogPictures(8);
+  const [triviaTuple, triviaError] = await getTriviaQuestions(8, 'easy');
+  const [ramTuple, ramError] = await getRickAndMortyPictures();
+  const [dogTuple, dogError] = await getDogPictures(8);
 
-  console.log(triviaTuple);
-  //   console.log(ramTuple);
+  // console.log(triviaTuple);
+  console.log(ramTuple);
   //   console.log(dogTuple);
 };
 

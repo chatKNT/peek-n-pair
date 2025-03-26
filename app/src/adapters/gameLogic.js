@@ -3,23 +3,45 @@
 import {
   getDogPictures,
   getRickAndMortyPictures,
+  getMaxRickAndMortyCharacters,
   getTriviaQuestions,
 } from './apiAdapters';
 
 // TEMP: fetch game images based on users options from Options.jsx Page
-export const fetchGameImages = async (category, theme) => {
+export const fetchGameImages = async (theme, difficulty) => {
   let images = [];
+  let difficultyAmount = 0;
 
-  if (category === 'Animals' && theme === 'Dogs') {
-    const [data, error] = await getDogPictures(6);
+  if (difficulty === 'Hard') {
+    difficultyAmount = 8;
+  } else {
+    difficultyAmount = 6;
+  }
+
+  if (theme === 'Dogs') {
+    const [data, error] = await getDogPictures(difficultyAmount);
     if (!error) images = data.message;
-  } else if (category === 'Movies/Shows' && theme === 'Rick and Morty') {
-    const [data, error] = await getRickAndMortyPictures([1, 2, 3, 4, 5, 6]);
+  } else if (theme === 'Rick and Morty') {
+    const ramChars = new Set();
+    const [numOfChars, charError] = await getMaxRickAndMortyCharacters();
+
+    // if there is no error, it will generate character id's for the API based on the difficulty (6 or 8)
+    // and push it to the ramChars array
+    if (!charError) {
+      while (ramChars.size < difficultyAmount) {
+        const randomChar = Math.floor(Math.random() * numOfChars) + 1;
+        ramChars.add(randomChar);
+      }
+    }
+
+    const [data, error] = await getRickAndMortyPictures([...ramChars]);
     if (!error) images = data.map((char) => char.image);
-  } else if (category === 'Miscellaneous') {
-    // Example: Fetch Trivia images
-    const [data, error] = await getTriviaQuestions(6, '', '');
-    if (!error) images = data.map((item) => item.image);
+  } else if (theme === 'Art') {
+    // LOCAL FETCH TO painting.json
+  } else if (theme === 'Cars') {
+    // LOCAL FETCH TO cars.json
+  } else if (theme === 'Foods') {
+    // LOCAL FETCH TO food.json
   }
 
   return images;
@@ -28,7 +50,7 @@ export const fetchGameImages = async (category, theme) => {
 export const prepareGameBoard = (images) => {
   let cards = [...images, ...images]; // Duplicate images
   cards = shuffleArray(cards); // Shuffle the array
-  return createMatrix(cards, 4, 3); // Convert into 4x3 matrix
+  return createMatrix(cards, 3, 4); // Convert into 3x4 matrix
 };
 
 // Fisher-Yates Shuffle Algorithm

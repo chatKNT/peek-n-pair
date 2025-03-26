@@ -24,10 +24,17 @@ export const getRickAndMortyPictures = async (characterIds = []) => {
 
     return [data, error];
   } else {
-    ramEP += `${characterIds}`;
     const [data, error] = await handleFetch(ramEP);
+    console.log(ramEP);
     return [data.results, error];
   }
+};
+
+export const getMaxRickAndMortyCharacters = async () => {
+  let ramEP = `${ramBaseUrl}/character/`;
+
+  const [data, error] = await handleFetch(ramEP);
+  return [data.info.count, error];
 };
 
 export const getTriviaQuestions = async (
