@@ -15,7 +15,7 @@ body {
   font-size: 16px;
   background-color: #a560cc;
   color: #333;
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -111,25 +111,25 @@ button {
   font-size: 14px;
   border-radius: 4px;
 }
-
 /* Game.jsx Page Styling */
 .game-page-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 60px; /* Space for the button container */
+  box-sizing: border-box;
 }
 
 .gamepage-btn-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 20px; /* Space between buttons */
   width: 100%;
   padding: 10px 0;
-  position: absolute;
-  top: 0;
+  z-index: 10; /* Ensure it stays above other content */
 }
 
 .game-page-controls {
@@ -138,24 +138,77 @@ button {
   padding: 8px 15px;
   font-size: 14px;
   border-radius: 8px;
-  margin-top: 10px;
+  border: none;
+  cursor: pointer;
 }
 
 .game-page-backdrop {
   background-color: #fefcf3;
   border-radius: 15px;
-  height: 75vh;
-  width: 85vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding-bottom: 10px;
-  position: absolute; /* Ensures it is centered */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Centers it perfectly */
+  justify-content: center;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: auto; /* Let it grow with content */
+  max-width: 90%; /* Prevent it from getting too wide */
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(80px, 1fr)); /* Responsive columns */
+  gap: 10px; /* Space between cards */
+  width: 100%;
+  max-width: calc(100px * 4 + 10px * 3); /* Max width based on card count */
+  margin: 0 auto;
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 1/1; /* Maintain square shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card-image:hover {
+  transform: scale(1.03);
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(4, minmax(60px, 1fr));
+    gap: 8px;
+  }
+
+  .game-page-controls {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-container {
+    max-width: calc(120px * 4 + 15px * 3); /* Larger cards on big screens */
+  }
+}
+/* End of game page styling */
 
 .peeknpair-logo {
   /* display: flex; */
@@ -232,17 +285,6 @@ button {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-  margin-top: 20px;
-}
-
-.grid-container {
-  width: 80%;
-  height: 300px;
-  border: 4px solid black;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   margin-top: 20px;
 }
 
