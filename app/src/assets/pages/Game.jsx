@@ -54,12 +54,57 @@ const Game = () => {
     shuffleCards();
   }, []);
 
-  // // Debugging effect
-  // useEffect(() => {
-  //   console.log("Current cards:", cards.length, cards);
-  // }, [cards]);
+  // Check if game is won
+  useEffect(() => {
+    //cards.length * 2 is cards(array of 8 objects) * 2 = 16
+    //solved is a pair of cards that has been matched so the total length of all solved should be 8
+    if (solved.length > 0 && solved.length === (cards.length * 2) / 2) {
+      setWon(true);
+    }
+  }, [solved, cards]);
 
-  const handleClick = () => {};
+  const handleClick = (id) => {
+    // Don't allow clicks if:
+    // - Game is disabled (waiting for flip animation)
+    // - Card is already flipped
+    // - Card is already solved
+    // - User already flipped 2 cards
+    if (
+      disabled ||
+      flipped.includes(id) ||
+      solved.includes(id) ||
+      flipped.length >= 2
+    ) {
+      return;
+    }
+
+    // Flip the card
+    const newFlipped = [...flipped, id];
+    setFlipped(newFlipped);
+
+    // If two cards are flipped, check for match
+    if (newFlipped.length === 2) {
+      setDisabled(true);
+
+      const [firstId, secondId] = newFlipped;
+      const firstCard = cards.find((card) => card.id === firstId);
+      const secondCard = cards.find((card) => card.id === secondId);
+
+      // Check if the cards match (same name)
+      if (firstCard.name === secondCard.name) {
+        // Add to solved pairs
+        setSolved([...solved, firstId, secondId]);
+        setFlipped([]);
+        setDisabled(false);
+      } else {
+        // No match - flip cards back after delay
+        setTimeout(() => {
+          setFlipped([]);
+          setDisabled(false);
+        }, 1000);
+      }
+    }
+  };
 
   return (
     <div>
@@ -71,13 +116,41 @@ const Game = () => {
           </Link>
           <Button text={"Dark Mode"} className={"game-page-controls"} />
         </div>
+
+        {/* Win message */}
+        {won && (
+          <div className="win-message">
+            <h2>Congratulations! You won!</h2>
+            <button onClick={shuffleCards}>Play Again</button>
+          </div>
+        )}
+
         <div className="game-page-backdrop">
           <div className="grid-container">
-            {cards.map((item) => (
-              <div className="card-image" key={item.id} onClick={handleClick}>
-                <img src={item.image} alt={item.name} />
-              </div>
-            ))}
+            {cards.map((item) => {
+              const isFlipped =
+                flipped.includes(item.id) || solved.includes(item.id);
+              return (
+                <div
+                  className={`card-image ${isFlipped ? "flipped" : ""}`}
+                  key={item.id}
+                  onClick={() => handleClick(item.id)}
+                >
+                  {/* Back of card (cover) */}
+                  <div className="card-back">
+                    <img
+                      src="https://pub-static.fotor.com/assets/bg/247d99f6-6217-4573-8ade-ce8043170fcd.jpg"
+                      alt="Card Back"
+                    />
+                  </div>
+
+                  {/* Front of card (content) */}
+                  <div className="card-front">
+                    <img src={item.image} alt={item.name} />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
