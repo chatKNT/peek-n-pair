@@ -4,6 +4,10 @@ import Button from "../components/Button.jsx";
 import paintingData from "./localFetches.js";
 import { useEffect, useState } from "react";
 
+import cars from "../../local-themes/cars.json";
+import food from "../../local-themes/food.json";
+import painting from "../../local-themes/painting.json";
+
 // exported function that's going to rendered inside of App.jsx
 const Game = () => {
   // Initialize with single set of paintings (not duplicated yet)
@@ -29,7 +33,7 @@ const Game = () => {
 
   const shuffleCards = () => {
     // Get the 8 objects
-    const baseCards = paintingData();
+    const baseCards = food.food;
     // Create pairs of 8 and give them an id
     const pairedCards = [...baseCards, ...baseCards].map((card, index) => ({
       ...card,
@@ -71,7 +75,7 @@ const Game = () => {
           <div className="grid-container">
             {cards.map((item) => (
               <div className="card-image" key={item.id} onClick={handleClick}>
-                <img src={item.imgSrc} alt={item.name} />
+                <img src={item.image} alt={item.name} />
               </div>
             ))}
           </div>
