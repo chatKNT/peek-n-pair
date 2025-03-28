@@ -1,21 +1,21 @@
 /** @format */
 
-import { handleFetch } from './adapters/handleFetch.js';
-import {
-  getTriviaQuestions,
-  getRickAndMortyPictures,
-  getDogPictures,
-} from './adapters/apiAdapters.js';
+// import { handleFetch } from './adapters/handleFetch.js';
+// import {
+//   getTriviaQuestions,
+//   getRickAndMortyPictures,
+//   getDogPictures,
+// } from './adapters/apiAdapters.js';
 
-const testHandleFetch = async () => {
-  const [data, error] = await handleFetch(
-    'https://dog.ceo/api/breeds/image/random'
-  );
-  if (error) {
-    return console.log(error);
-  }
-  console.log(data);
-};
+// const testHandleFetch = async () => {
+//   const [data, error] = await handleFetch(
+//     'https://dog.ceo/api/breeds/image/random'
+//   );
+//   if (error) {
+//     return console.log(error);
+//   }
+//   console.log(data);
+// };
 
 // Test your adapter functions here
 const testAdapters = async () => {
@@ -28,5 +28,5 @@ const testAdapters = async () => {
   //   console.log(dogTuple);
 };
 
-// testHandleFetch();
-testAdapters();
+// // testHandleFetch();
+// testAdapters();

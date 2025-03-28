@@ -5,7 +5,7 @@ import {
   getRickAndMortyPictures,
   getMaxRickAndMortyCharacters,
   getTriviaQuestions,
-} from './apiAdapters';
+} from "./apiAdapters";
 
 // TEMP: fetch game images based on users options from Options.jsx Page
 export const fetchGameImages = async (theme, difficulty) => {
@@ -43,7 +43,6 @@ export const fetchGameImages = async (theme, difficulty) => {
   } else if (theme === 'Foods') {
     // LOCAL FETCH TO food.json
   }
-
   return images;
 };
 
