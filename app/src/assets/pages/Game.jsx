@@ -1,24 +1,26 @@
 /** @format */
 import { Link } from "react-router-dom";
 import Button from "../components/Button.jsx";
-import paintingData from "./localFetches.js";
 import { useEffect, useState } from "react";
 
 import cars from "../../local-themes/cars.json";
 import food from "../../local-themes/food.json";
-import painting from "../../local-themes/painting.json";
+import paintings from "../../local-themes/painting.json";
 
 // exported function that's going to rendered inside of App.jsx
 const Game = () => {
   // Initialize with single set of paintings (not duplicated yet)
   const [cards, setCards] = useState([]);
   //tracks flipped cards
+  //temporarily stores the id of the flipped cards
   const [flipped, setFlipped] = useState([]);
   //if two cards are matched then this state will update
+  //this is storing the id's of the matched cards
   const [solved, setSolved] = useState([]);
-  //gameboard, if two cards are clicked, then it will be disabled
+  //gameboard, if two cards are clicked, then it will be disabled (lockboard)
   const [disabled, setDisabled] = useState(false);
   //if all cards are solved then the game will end
+  //tracks the state of won
   const [won, setWon] = useState(false);
 
   // Fisher-Yates shuffle algorithm
@@ -33,7 +35,13 @@ const Game = () => {
 
   const shuffleCards = () => {
     // Get the 8 objects
-    const baseCards = painting.paintings;
+    /*change baseCards to test the cars/ painting/ food
+    - cars.cars
+    - food.food
+    - paintings.paintings
+    */
+
+    const baseCards = paintings.paintings;
     // Create pairs of 8 and give them an id
     const pairedCards = [...baseCards, ...baseCards].map((card, index) => ({
       ...card,
@@ -69,6 +77,13 @@ const Game = () => {
     // - Card is already flipped
     // - Card is already solved
     // - User already flipped 2 cards
+
+    //if the board is disabled...
+    //Or flipped includes the id of the card that was clicked
+    //Or Solved indludes the id...
+    //Or two cards have already been clicked..
+
+    //We return (do nothing...)
     if (
       disabled ||
       flipped.includes(id) ||
@@ -79,27 +94,36 @@ const Game = () => {
     }
 
     // Flip the card
+    //add the id of the card to the flipped array
     const newFlipped = [...flipped, id];
+    //update the state to be the new flipped
     setFlipped(newFlipped);
 
     // If two cards are flipped, check for match
     if (newFlipped.length === 2) {
+      //lock the board
       setDisabled(true);
 
+      //destructure the newFlipped array to access id's of the first and last card
       const [firstId, secondId] = newFlipped;
+      //find the card that the id belongs to
       const firstCard = cards.find((card) => card.id === firstId);
       const secondCard = cards.find((card) => card.id === secondId);
 
       // Check if the cards match (same name)
       if (firstCard.name === secondCard.name) {
-        // Add to solved pairs
+        // Add to the array of solved pairs
         setSolved([...solved, firstId, secondId]);
+        //empty the flipped array so that it can track the next pair
         setFlipped([]);
+        //open the board so that cards can be clicked again
         setDisabled(false);
       } else {
-        // No match - flip cards back after delay
+        // No match - flip cards back after a delay of one second (1000(ms))
         setTimeout(() => {
+          //empty the flipped array for the next pair
           setFlipped([]);
+          //open the board for selections
           setDisabled(false);
         }, 1000);
       }
@@ -147,7 +171,7 @@ const Game = () => {
         </div>
 
         {/* Win message */}
-        {/* Syntax: when won is set to true, this div will pop  */}
+        {/* Syntax: when won is set to true, this div will pop up  */}
         {won && (
           <div className="win-div">
             <h2 className="win-h2">You won!</h2>

@@ -7,6 +7,10 @@ import {
   getTriviaQuestions,
 } from "./apiAdapters";
 
+import cars from "../local-themes/cars.json";
+import food from "../local-themes/food.json";
+import paintings from "../local-themes/painting.json";
+
 // TEMP: fetch game images based on users options from Options.jsx Page
 export const fetchGameImages = async (theme, difficulty) => {
   let images = [];
@@ -38,13 +42,18 @@ export const fetchGameImages = async (theme, difficulty) => {
     if (!error) images = data.map((char) => char.image);
   } else if (theme === "Art") {
     // LOCAL FETCH TO painting.json
+    return paintings.paintings;
   } else if (theme === "Cars") {
     // LOCAL FETCH TO cars.json
+    return cars.cars;
   } else if (theme === "Foods") {
     // LOCAL FETCH TO food.json
+    return food.food;
   }
   return images;
 };
+
+//THESE ARE THE OLD SET OF FUNCTIONALITIES
 
 // export const prepareGameBoard = (images) => {
 //   let cards = [...images, ...images]; // Duplicate images
@@ -100,3 +109,47 @@ export const fetchGameImages = async (theme, difficulty) => {
 //     }
 //   }
 // };
+
+//THIS IS THE FORMATTED FUNCTIONS FOR THE GAME.JSX DO NOT DELETE OR EDIT
+
+//export & import
+const shuffleCards = (data) => {
+  // Get the 8 objects
+  const baseCards = data;
+  // Create pairs of 8 and give them an id
+  const pairedCards = [...baseCards, ...baseCards].map((card, index) => ({
+    ...card,
+    id: index, // id for each card
+  }));
+};
+
+//export & import
+// Fisher-Yates shuffle algorithm
+const shuffleArray = (array) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
+//move to the game.jsx
+const setNewCards = (pairedCards) => {
+  const shuffledCards = shuffleArray(pairedCards);
+
+  setCards(shuffledCards);
+  setFlipped([]);
+  setSolved([]);
+  setWon(false);
+  setDisabled(false);
+};
+
+//IDEA OF WHAT TO DO..
+/*
+- Options page return an object of selections
+- fetch game images accepts that options obj and fetches accordingly
+- fetch game images return the images data for the selections
+- game page functionality takes over...
+
+*/
