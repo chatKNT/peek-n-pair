@@ -177,17 +177,67 @@ button {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
   cursor: pointer;
+  position: relative;
+  /*  */
+  perspective: 800px;
+  transform-style: preserve-3d;
 }
 
 .card-image:hover {
   transform: scale(1.03);
 }
 
-.card-image img {
+.card-back,
+.card-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hides the back face when flipped */
+  transition: transform 0.6s ease; /* Smooth flip animation */
+  border-radius: 8px; /* Match your existing border-radius */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back {
+  background-color: #4a6fa5; /* Example back color - change as needed */
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+}
+
+/* Flip animation states */
+.card-image.flipped .card-back {
+  transform: rotateY(180deg);
+}
+
+.card-image.flipped .card-front {
+  transform: rotateY(0deg);
+}
+
+.card-front img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
+}
+
+/* New back face content styling (customize as needed) */
+.card-back::after {
+  /* content: "?";  */
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Disabled state during animations */
+.card-image.disabled {
+  pointer-events: none;
+  cursor: default;
 }
 
 /* Responsive adjustments */
@@ -208,6 +258,33 @@ button {
     max-width: calc(120px * 4 + 15px * 3); /* Larger cards on big screens */
   }
 }
+
+/* Won div */
+.win-div {
+  border: yellow solid;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.play-again-btn {
+  background-color: #fada30;
+  color: #000000;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 0px;
+}
+
+.play-again-btn button:hover {
+  background-color: green;
+}
+
 /* End of game page styling */
 
 .peeknpair-logo {
