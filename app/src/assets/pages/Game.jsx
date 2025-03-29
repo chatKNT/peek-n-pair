@@ -33,7 +33,7 @@ const Game = () => {
 
   const shuffleCards = () => {
     // Get the 8 objects
-    const baseCards = food.food;
+    const baseCards = painting.paintings;
     // Create pairs of 8 and give them an id
     const pairedCards = [...baseCards, ...baseCards].map((card, index) => ({
       ...card,
@@ -117,14 +117,6 @@ const Game = () => {
           <Button text={"Dark Mode"} className={"game-page-controls"} />
         </div>
 
-        {/* Win message */}
-        {won && (
-          <div className="win-message">
-            <h2>Congratulations! You won!</h2>
-            <button onClick={shuffleCards}>Play Again</button>
-          </div>
-        )}
-
         <div className="game-page-backdrop">
           <div className="grid-container">
             {cards.map((item) => {
@@ -153,6 +145,17 @@ const Game = () => {
             })}
           </div>
         </div>
+
+        {/* Win message */}
+        {/* Syntax: when won is set to true, this div will pop  */}
+        {won && (
+          <div className="win-div">
+            <h2 className="win-h2">You won!</h2>
+            <button className="play-again-btn" onClick={shuffleCards}>
+              Play Again?
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
