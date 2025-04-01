@@ -15,6 +15,7 @@ const Options = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedTheme, setSelectedTheme] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
+  const [trackTime, setTrackTime] = useState('');
 
   const toggleDropdown = (option) => {
     setDropdowns((prev) => ({
@@ -25,7 +26,7 @@ const Options = () => {
 
   const selectCategory = (category) => {
     setSelectedCategory(category);
-    setSelectedTheme(''); // Reset theme when category changes
+    setSelectedTheme(''); // resets theme when category changes
     setDropdowns((prev) => ({ ...prev, categories: false }));
   };
 
@@ -37,6 +38,11 @@ const Options = () => {
   const selectDifficulty = (difficulty) => {
     setSelectedDifficulty(difficulty);
     setDropdowns((prev) => ({ ...prev, difficulties: false }));
+  };
+
+  const selectTrackTime = (option) => {
+    setTrackTime(option);
+    setDropdowns((prev) => ({ ...prev, time: false }));
   };
 
   const getThemes = () => {
@@ -58,14 +64,19 @@ const Options = () => {
     <div className="options-container">
       <div className="options-navbar">
         <Link to="/">
-          <Button text={'Home'} />
+          <Button text={'HOME'} className={'home-button'} />
         </Link>
         <Button text={'DARK MODE'} className={'lightdark-button'} />
       </div>
 
       <div className="page-backdrop">
         <div className="selection-container">
-          {/* TODO: ADD GUARD CLAUSE SO IF ONE OF THE STATES ARE MISSING THEY CAN'T MOVE ON TO THE GANE PAGE */}
+          {/* TODO: ADD GUARD CLAUSE SO IF ONE OF THE STATES ARE MISSING THEY CAN'T MOVE ON TO THE GAME PAGE */}
+          {selectedCategory && <p>Category: {selectedCategory}</p>}
+          {selectedTheme && <p>Theme: {selectedTheme}</p>}
+          {selectedDifficulty && <p>Difficulty: {selectedDifficulty}</p>}
+          {trackTime && <p>Track Time?: {trackTime}</p>}
+
           <Link
             to="/game"
             state={{
@@ -73,14 +84,8 @@ const Options = () => {
               theme: selectedTheme,
               difficulty: selectedDifficulty,
             }}
-            // onClick={() => {
-            //   console.log("User Selections:");
-            //   console.log("Category:", selectedCategory);
-            //   console.log("Theme:", selectedTheme);
-            //   console.log("Difficulty:", selectedDifficulty);
-            // }}
           >
-            <Button text={'Confirm'} />
+            <Button text={'CONFIRM'} className={'confirm-button'} />
           </Link>
         </div>
 
@@ -104,7 +109,6 @@ const Options = () => {
               </button>
             </div>
           )}
-          {selectedCategory && <p>Selected: {selectedCategory}</p>}
         </div>
 
         {/* Theme Dropdown */}
@@ -123,7 +127,6 @@ const Options = () => {
               ))}
             </div>
           )}
-          {selectedTheme && <p>Selected: {selectedTheme}</p>}
         </div>
 
         {/* Difficulty Dropdown */}
@@ -145,14 +148,22 @@ const Options = () => {
               ))}
             </div>
           )}
-          {selectedDifficulty && <p>Selected: {selectedDifficulty}</p>}
         </div>
 
-        {/* <Button text={'Difficulty'} /> */}
-        <Button
-          text={'Track Time?'}
-          className={'option-button track-time-button'}
-        />
+        {/* Track Time Dropdown */}
+        <div className="option-group">
+          <Button
+            text={'Track Time?'}
+            onClick={() => toggleDropdown('time')}
+            className={'option-button track-time-button'}
+          />
+          {dropdowns.time && (
+            <div className="dropdown">
+              <button onClick={() => selectTrackTime('Yes')}>Yes</button>
+              <button onClick={() => selectTrackTime('No')}>No</button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

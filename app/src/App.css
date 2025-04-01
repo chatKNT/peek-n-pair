@@ -15,7 +15,7 @@ body {
   font-size: 16px;
   background-color: #a560cc;
   color: #333;
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -28,21 +28,21 @@ body {
 .page-backdrop {
   background-color: #fefcf3;
   border-radius: 15px;
-  height: 75vh;
+  height: 80vh;
   width: 85vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Align items to the left */
   justify-content: flex-end; /* Push content to the bottom */
-  padding-bottom: 10px; /* Extra space at the bottom */
-  padding-left: 10px; /* Add padding to shift content from the left */
+  padding-bottom: 5px; /* Reduced space at the bottom */
+  padding-left: 5px; /* Reduced padding to shift content from the left */
 }
 
 button {
   font-size: 18px;
   font-weight: bold;
   padding: 15px 18px;
-  margin: 15px;
+  margin: 10px; /* Reduced margin */
   border-radius: 10px;
   cursor: pointer;
   border: none;
@@ -54,7 +54,7 @@ button {
   justify-content: center;
   width: 81vw;
   margin-top: auto;
-  margin-bottom: -55px; /* Adds spacing from the bottom */
+  margin-bottom: -50px; /* Adjusted spacing from the bottom */
 }
 
 .startup-play-button {
@@ -66,13 +66,12 @@ button {
   padding: 8px;
 }
 
-.rules-button {
+.howto-button {
   background-color: #6495ed;
   box-shadow: 4px 4px 0px black;
   white-space: nowrap;
   text-align: center;
   display: inline-block;
-  /* width: 28vw; */
 }
 
 .best-times-button {
@@ -92,8 +91,7 @@ button {
   display: inline-block;
 }
 
-.theme-button,
-.track-time-button {
+.theme-button {
   background-color: #6495ed;
   box-shadow: 4px 4px 0px black;
   white-space: nowrap;
@@ -101,9 +99,47 @@ button {
   display: inline-block;
 }
 
-.lightdark-button {
+.track-time-button {
+  background-color: #6495ed;
+  box-shadow: 4px 4px 0px black;
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+  position: relative; /* For dropdown positioning */
+}
+
+.track-time-dropdown {
   position: absolute;
-  top: 20px;
+  top: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  display: none; /* Initially hidden */
+  flex-direction: column;
+  z-index: 10;
+}
+
+.track-time-button:hover .track-time-dropdown {
+  display: flex; /* Show dropdown on hover */
+}
+
+.track-time-dropdown button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.track-time-dropdown button:hover {
+  background-color: lightgray;
+}
+
+.lightdark-button {
+  position: fixed;
+  top: 1vb;
   right: 20px;
   background-color: #fada30;
   color: #000000;
@@ -111,6 +147,7 @@ button {
   font-size: 14px;
   border-radius: 4px;
 }
+
 /* Game.jsx Page Styling */
 .game-page-body {
   display: flex;
@@ -126,7 +163,7 @@ button {
 .gamepage-btn-container {
   display: flex;
   justify-content: center;
-  gap: 20px; /* Space between buttons */
+  gap: 15px; /* Reduced space between buttons */
   width: 100%;
   padding: 10px 0;
   z-index: 10; /* Ensure it stays above other content */
@@ -298,21 +335,32 @@ button {
 /* Options.jsx Page Styling */
 .option-button {
   margin: 0.3rem;
-  width: 40vw;
-  font-size: 1rem;
+  width: 30vw;
+  font-size: 0.9rem;
 }
 
-.options-navbar {
+/* .options-navbar {
   display: flex;
   justify-content: space-between;
   padding: 0;
   top: 0;
   left: 0;
-}
+} */
 
-.options-navbar .lightdark-button {
+/* .options-navbar .lightdark-button {
   padding: 10px 18px;
   margin-top: 0;
+} */
+
+.home-button {
+  position: fixed;
+  top: 1vb;
+  left: 20px;
+  background-color: #fada30;
+  color: #000000;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 4px;
 }
 
 /* Option group styling */
@@ -370,13 +418,23 @@ button {
   flex-direction: column;
   align-self: center;
   justify-content: flex-end; /* Ensures the Confirm button stays at the bottom */
-  background-color: black;
+  background-color: #fefcf3;
   width: 35vw; /* Increase size */
   height: 35vh; /* Increase size */
   border: 15px solid #fada30;
   border-radius: 10px;
   padding: 10px;
   position: relative;
+  box-shadow: -8px 8px 0px black;
+  margin-bottom: auto;
+}
+
+.confirm-button {
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  /* align-self: center; */
+  justify-self: center;
 }
 
 /* DON'T TOUCH THIS YET UNTIL MOBILE DESIGN IS FINISHED FIRST  */
