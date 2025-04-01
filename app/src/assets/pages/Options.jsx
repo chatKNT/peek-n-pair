@@ -1,8 +1,8 @@
 /** @format */
 
-import { useState } from 'react';
-import Button from '../components/Button.jsx';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import Button from "../components/Button.jsx";
+import { Link } from "react-router-dom";
 
 const Options = () => {
   const [dropdowns, setDropdowns] = useState({
@@ -12,9 +12,9 @@ const Options = () => {
     time: false,
   });
 
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedTheme, setSelectedTheme] = useState('');
-  const [selectedDifficulty, setSelectedDifficulty] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedTheme, setSelectedTheme] = useState("");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("");
 
   const toggleDropdown = (option) => {
     setDropdowns((prev) => ({
@@ -25,7 +25,7 @@ const Options = () => {
 
   const selectCategory = (category) => {
     setSelectedCategory(category);
-    setSelectedTheme(''); // Reset theme when category changes
+    setSelectedTheme(""); // Reset theme when category changes
     setDropdowns((prev) => ({ ...prev, categories: false }));
   };
 
@@ -41,26 +41,26 @@ const Options = () => {
 
   const getThemes = () => {
     switch (selectedCategory) {
-      case 'Animals':
-        return ['Dogs'];
-      case 'Movies/Shows':
-        return ['Rick and Morty'];
-      case 'Miscellaneous':
-        return ['Art', 'Cars', 'Foods'];
+      case "Animals":
+        return ["Dogs"];
+      case "Movies/Shows":
+        return ["Rick and Morty"];
+      case "Miscellaneous":
+        return ["Art", "Cars", "Foods"];
       default:
         return [];
     }
   };
 
-  const getDifficulties = () => ['Easy', 'Medium', 'Hard'];
+  const getDifficulties = () => ["Easy", "Medium", "Hard"];
 
   return (
     <div className="options-container">
       <div className="options-navbar">
         <Link to="/">
-          <Button text={'Home'} />
+          <Button text={"Home"} />
         </Link>
-        <Button text={'DARK MODE'} className={'lightdark-button'} />
+        <Button text={"DARK MODE"} className={"lightdark-button"} />
       </div>
 
       <div className="page-backdrop">
@@ -73,14 +73,14 @@ const Options = () => {
               theme: selectedTheme,
               difficulty: selectedDifficulty,
             }}
-            // onClick={() => {
-            //   console.log("User Selections:");
-            //   console.log("Category:", selectedCategory);
-            //   console.log("Theme:", selectedTheme);
-            //   console.log("Difficulty:", selectedDifficulty);
-            // }}
+            onClick={() => {
+              // console.log("User Selections:");
+              // console.log("Category:", selectedCategory);
+              // console.log("Theme:", selectedTheme);
+              // console.log("Difficulty:", selectedDifficulty);
+            }}
           >
-            <Button text={'Confirm'} />
+            <Button text={"Confirm"} />
           </Link>
         </div>
 
@@ -89,17 +89,17 @@ const Options = () => {
         {/* Categories Dropdown */}
         <div className="option-group">
           <Button
-            text={'Categories'}
-            onClick={() => toggleDropdown('categories')}
-            className={'option-button categories-button'}
+            text={"Categories"}
+            onClick={() => toggleDropdown("categories")}
+            className={"option-button categories-button"}
           />
           {dropdowns.categories && (
             <div className="dropdown">
-              <button onClick={() => selectCategory('Animals')}>Animals</button>
-              <button onClick={() => selectCategory('Movies/Shows')}>
+              <button onClick={() => selectCategory("Animals")}>Animals</button>
+              <button onClick={() => selectCategory("Movies/Shows")}>
                 Movies/Shows
               </button>
-              <button onClick={() => selectCategory('Miscellaneous')}>
+              <button onClick={() => selectCategory("Miscellaneous")}>
                 Miscellaneous
               </button>
             </div>
@@ -110,9 +110,9 @@ const Options = () => {
         {/* Theme Dropdown */}
         <div className="option-group">
           <Button
-            text={'Theme'}
-            onClick={() => toggleDropdown('theme')}
-            className={'option-button theme-button'}
+            text={"Theme"}
+            onClick={() => toggleDropdown("theme")}
+            className={"option-button theme-button"}
           />
           {dropdowns.theme && selectedCategory && (
             <div className="dropdown">
@@ -129,9 +129,9 @@ const Options = () => {
         {/* Difficulty Dropdown */}
         <div className="option-group">
           <Button
-            text={'Difficulty'}
-            onClick={() => toggleDropdown('difficulties')}
-            className={'option-button difficulty-button'}
+            text={"Difficulty"}
+            onClick={() => toggleDropdown("difficulties")}
+            className={"option-button difficulty-button"}
           />
           {dropdowns.difficulties && (
             <div className="dropdown">
@@ -150,8 +150,8 @@ const Options = () => {
 
         {/* <Button text={'Difficulty'} /> */}
         <Button
-          text={'Track Time?'}
-          className={'option-button track-time-button'}
+          text={"Track Time?"}
+          className={"option-button track-time-button"}
         />
       </div>
     </div>
