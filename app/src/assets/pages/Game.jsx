@@ -41,7 +41,7 @@ const Game = () => {
     - paintings.paintings
     */
 
-    const baseCards = paintings.paintings;
+    const baseCards = cars.cars;
     // Create pairs of 8 and give them an id
     const pairedCards = [...baseCards, ...baseCards].map((card, index) => ({
       ...card,
