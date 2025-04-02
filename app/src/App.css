@@ -10,11 +10,34 @@
   width: 100%;
 }
 
+:root {
+  /* Light theme */
+  --primary-color: #a560cc;
+  --secondary-color: #fada30;
+  --background-color: #fefcf3;
+  --text-color: #333;
+  --button-bg: #ffffff;
+  --card-bg: #ffffff;
+  --border-color: #000000;
+}
+
+.dark-theme {
+  /* Dark theme */
+  /* Dark theme */
+  --primary-color: #7d48a3;
+  --secondary-color: #d4b125;
+  --background-color: #2d2d2d;
+  --text-color: #ffffff;
+  --button-bg: #3d3d3d;
+  --card-bg: #1a1a1a;
+  --border-color: #ffffff;
+}
+
 /* Default styles (Mobile First) */
 body {
   font-size: 16px;
-  background-color: #a560cc;
-  color: #333;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   font-family: 'Poppins', Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -26,7 +49,7 @@ body {
 }
 
 .page-backdrop {
-  background-color: #fefcf3;
+  background-color: var(--background-color);
   border-radius: 15px;
   height: 80vh;
   width: 85vw;
@@ -82,6 +105,29 @@ button {
   display: inline-block;
 }
 
+.startup-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.startup-logo {
+  display: flex;
+  align-self: center;
+  justify-items: center;
+  max-width: 90%;
+  max-height: 70vh;
+  min-width: 400px;
+  min-height: 400px;
+  object-fit: contain;
+}
+
 .categories-button,
 .difficulty-button {
   background-color: #ff8c00;
@@ -91,6 +137,9 @@ button {
   display: inline-block;
 }
 
+p {
+  color: var(--text-color);
+}
 .theme-button {
   background-color: #6495ed;
   box-shadow: 4px 4px 0px black;
@@ -141,8 +190,8 @@ button {
   position: fixed;
   top: 1vb;
   right: 20px;
-  background-color: #fada30;
-  color: #000000;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   padding: 8px 15px;
   font-size: 14px;
   border-radius: 4px;
@@ -170,8 +219,8 @@ button {
 }
 
 .game-page-controls {
-  background-color: #fada30;
-  color: #000000;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   padding: 8px 15px;
   font-size: 14px;
   border-radius: 8px;
@@ -226,6 +275,7 @@ button {
 
 .card-back,
 .card-front {
+  background-color: var(--primary-color);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -299,7 +349,8 @@ button {
 /* Won div */
 .win-div {
   border: yellow solid;
-  background: white;
+  background: var(--background-color);
+  border-color: var(--secondary-color);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -356,8 +407,8 @@ button {
   position: fixed;
   top: 1vb;
   left: 20px;
-  background-color: #fada30;
-  color: #000000;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   padding: 8px 15px;
   font-size: 14px;
   border-radius: 4px;
@@ -375,7 +426,8 @@ button {
 .dropdown {
   position: absolute;
   top: 40px;
-  background-color: white;
+  background-color: var(--button-bg);
+  color: var(--text-color);
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -418,10 +470,10 @@ button {
   flex-direction: column;
   align-self: center;
   justify-content: flex-end; /* Ensures the Confirm button stays at the bottom */
-  background-color: #fefcf3;
+  background-color: var(--background-color);
   width: 35vw; /* Increase size */
   height: 35vh; /* Increase size */
-  border: 15px solid #fada30;
+  border: 15px solid var(--secondary-color);
   border-radius: 10px;
   padding: 10px;
   position: relative;
