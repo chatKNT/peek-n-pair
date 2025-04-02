@@ -64,7 +64,7 @@ const Options = () => {
     <div className="options-container">
       <div className="options-navbar">
         <Link to="/">
-          <Button text={"HOME'} className={'home-button"} />
+          <Button text={"HOME"} className={"home-button"} />
         </Link>
         <Button text={"DARK MODE"} className={"lightdark-button"} />
       </div>
@@ -85,7 +85,7 @@ const Options = () => {
               difficulty: selectedDifficulty,
             }}
           >
-            <Button text={"CONFIRM'} className={'confirm-button"} />
+            <Button text={"CONFIRM"} className={"confirm-button"} />
           </Link>
         </div>
 

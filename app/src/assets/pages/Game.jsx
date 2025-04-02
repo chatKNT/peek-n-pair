@@ -134,7 +134,9 @@ const Game = () => {
     <div>
       <div className="game-page-body">
         <div className="gamepage-btn-container fixed-top">
-          <Button text={"Rules"} className={"game-page-controls"} />
+          <Link to="/howto">
+            <Button text={"Rules"} className={"game-page-controls"} />
+          </Link>
           <Link to="/options">
             <Button text={"Start Over"} className={"game-page-controls"} />
           </Link>
