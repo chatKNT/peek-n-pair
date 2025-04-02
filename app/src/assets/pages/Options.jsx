@@ -1,10 +1,10 @@
 /** @format */
-
 import { useState } from "react";
 import Button from "../components/Button.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ThemeToggle from "../components/ThemeToggle.jsx";
 
-const Options = () => {
+const Options = ({ onOptionsSubmit }) => {
   const [dropdowns, setDropdowns] = useState({
     categories: false,
     theme: false,
@@ -12,10 +12,15 @@ const Options = () => {
     time: false,
   });
 
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedTheme, setSelectedTheme] = useState("");
-  const [selectedDifficulty, setSelectedDifficulty] = useState("");
-  const [trackTime, setTrackTime] = useState("");
+  // Consolidated form state
+  const [formData, setFormData] = useState({
+    category: "",
+    theme: "",
+    difficulty: "",
+    trackTime: "No", // Default value
+  });
+
+  const navigate = useNavigate();
 
   const toggleDropdown = (option) => {
     setDropdowns((prev) => ({
@@ -24,29 +29,20 @@ const Options = () => {
     }));
   };
 
-  const selectCategory = (category) => {
-    setSelectedCategory(category);
-    setSelectedTheme(""); // resets theme when category changes
-    setDropdowns((prev) => ({ ...prev, categories: false }));
-  };
-
-  const selectTheme = (theme) => {
-    setSelectedTheme(theme);
-    setDropdowns((prev) => ({ ...prev, theme: false }));
-  };
-
-  const selectDifficulty = (difficulty) => {
-    setSelectedDifficulty(difficulty);
-    setDropdowns((prev) => ({ ...prev, difficulties: false }));
-  };
-
-  const selectTrackTime = (option) => {
-    setTrackTime(option);
-    setDropdowns((prev) => ({ ...prev, time: false }));
+  const handleSelect = (field, value) => {
+    setFormData((prev) => {
+      const newData = { ...prev, [field]: value };
+      // Reset dependent fields when category changes
+      if (field === "category") {
+        newData.theme = "";
+      }
+      return newData;
+    });
+    setDropdowns((prev) => ({ ...prev, [field]: false }));
   };
 
   const getThemes = () => {
-    switch (selectedCategory) {
+    switch (formData.category) {
       case "Animals":
         return ["Dogs"];
       case "Movies/Shows":
@@ -60,33 +56,51 @@ const Options = () => {
 
   const getDifficulties = () => ["Easy", "Medium", "Hard"];
 
+  const [showErrors, setShowErrors] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowErrors(true);
+
+    // Validation check
+    if (!formData.category || !formData.theme || !formData.difficulty) {
+      return;
+    }
+
+    // If valid, proceed
+    onOptionsSubmit(formData);
+    navigate("/game", { state: formData });
+  };
+
   return (
     <div className="options-container">
       <div className="options-navbar">
         <Link to="/">
           <Button text={"HOME"} className={"home-button"} />
         </Link>
-        <Button text={"DARK MODE"} className={"lightdark-button"} />
+        <ThemeToggle />
       </div>
 
-      <div className="page-backdrop">
+      <form className="page-backdrop" onSubmit={handleSubmit}>
         <div className="selection-container">
-          {/* TODO: ADD GUARD CLAUSE SO IF ONE OF THE STATES ARE MISSING THEY CAN'T MOVE ON TO THE GAME PAGE */}
-          {selectedCategory && <p>Category: {selectedCategory}</p>}
-          {selectedTheme && <p>Theme: {selectedTheme}</p>}
-          {selectedDifficulty && <p>Difficulty: {selectedDifficulty}</p>}
-          {trackTime && <p>Track Time?: {trackTime}</p>}
+          {/* Display selected options */}
+          {formData.category && <p>Category: {formData.category}</p>}
+          {formData.theme && <p>Theme: {formData.theme}</p>}
+          {formData.difficulty && <p>Difficulty: {formData.difficulty}</p>}
+          {formData.trackTime && <p>Track Time?: {formData.trackTime}</p>}
 
-          <Link
-            to="/game"
-            state={{
-              category: selectedCategory,
-              theme: selectedTheme,
-              difficulty: selectedDifficulty,
-            }}
-          >
-            <Button text={"CONFIRM"} className={"confirm-button"} />
-          </Link>
+          {/* Error messages - only show when validation failed */}
+          {showErrors && !formData.category && (
+            <p className="error">Please select a category</p>
+          )}
+          {showErrors && !formData.theme && (
+            <p className="error">Please select a theme</p>
+          )}
+          {showErrors && !formData.difficulty && (
+            <p className="error">Please select a difficulty</p>
+          )}
+
+          <Button type="submit" text={"CONFIRM"} className={"confirm-button"} />
         </div>
 
         <div className="options-preview"></div>
@@ -100,11 +114,22 @@ const Options = () => {
           />
           {dropdowns.categories && (
             <div className="dropdown">
-              <button onClick={() => selectCategory("Animals")}>Animals</button>
-              <button onClick={() => selectCategory("Movies/Shows")}>
+              <button
+                type="button"
+                onClick={() => handleSelect("category", "Animals")}
+              >
+                Animals
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSelect("category", "Movies/Shows")}
+              >
                 Movies/Shows
               </button>
-              <button onClick={() => selectCategory("Miscellaneous")}>
+              <button
+                type="button"
+                onClick={() => handleSelect("category", "Miscellaneous")}
+              >
                 Miscellaneous
               </button>
             </div>
@@ -117,11 +142,16 @@ const Options = () => {
             text={"Theme"}
             onClick={() => toggleDropdown("theme")}
             className={"option-button theme-button"}
+            disabled={!formData.category}
           />
-          {dropdowns.theme && selectedCategory && (
+          {dropdowns.theme && formData.category && (
             <div className="dropdown">
               {getThemes().map((theme) => (
-                <button key={theme} onClick={() => selectTheme(theme)}>
+                <button
+                  type="button"
+                  key={theme}
+                  onClick={() => handleSelect("theme", theme)}
+                >
                   {theme}
                 </button>
               ))}
@@ -140,8 +170,9 @@ const Options = () => {
             <div className="dropdown">
               {getDifficulties().map((difficulty) => (
                 <button
+                  type="button"
                   key={difficulty}
-                  onClick={() => selectDifficulty(difficulty)}
+                  onClick={() => handleSelect("difficulty", difficulty)}
                 >
                   {difficulty}
                 </button>
@@ -159,12 +190,22 @@ const Options = () => {
           />
           {dropdowns.time && (
             <div className="dropdown">
-              <button onClick={() => selectTrackTime("Yes")}>Yes</button>
-              <button onClick={() => selectTrackTime("No")}>No</button>
+              <button
+                type="button"
+                onClick={() => handleSelect("trackTime", "Yes")}
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSelect("trackTime", "No")}
+              >
+                No
+              </button>
             </div>
           )}
         </div>
-      </div>
+      </form>
     </div>
   );
 };
