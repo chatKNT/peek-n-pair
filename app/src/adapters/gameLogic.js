@@ -5,52 +5,54 @@ import {
   getRickAndMortyPictures,
   getMaxRickAndMortyCharacters,
   getTriviaQuestions,
-} from "./apiAdapters";
+} from './apiAdapters';
 
-import cars from "../local-themes/cars.json";
-import food from "../local-themes/food.json";
-import paintings from "../local-themes/painting.json";
+import cars from '../local-themes/cars.json';
+import food from '../local-themes/food.json';
+import paintings from '../local-themes/painting.json';
 
 // TEMP: fetch game images based on users options from Options.jsx Page
 export const fetchGameImages = async (theme, difficulty) => {
   let images = [];
-  let difficultyAmount = 0;
+  const difficultyAmount = difficulty === 'Hard' ? 8 : 6;
 
-  if (difficulty === "Hard") {
-    difficultyAmount = 8;
-  } else {
-    difficultyAmount = 6;
-  }
+  try {
+    if (theme === 'Dogs') {
+      const [data] = await getDogPictures(difficultyAmount);
+      // Create objects with both image and name properties
+      images = data.message.map((url, index) => ({
+        image: url,
+        name: `Dog ${index + 1}`, // Generate unique names for matching
+      }));
+    } else if (theme === 'Rick and Morty') {
+      const ramChars = new Set();
+      const [numOfChars] = await getMaxRickAndMortyCharacters();
 
-  if (theme === "Dogs") {
-    const [data, error] = await getDogPictures(difficultyAmount);
-    if (!error) images = data.message;
-  } else if (theme === "Rick and Morty") {
-    const ramChars = new Set();
-    const [numOfChars, charError] = await getMaxRickAndMortyCharacters();
-
-    // if there is no error, it will generate character id's for the API based on the difficulty (6 or 8)
-    // and push it to the ramChars array
-    if (!charError) {
+      // Generate unique random character IDs
       while (ramChars.size < difficultyAmount) {
         const randomChar = Math.floor(Math.random() * numOfChars) + 1;
         ramChars.add(randomChar);
       }
+
+      const [data] = await getRickAndMortyPictures([...ramChars]);
+      // Extract both image and name from characters
+      images = data.map((char) => ({
+        image: char.image,
+        name: char.name,
+      }));
+    } else if (theme === 'Art') {
+      return paintings.paintings;
+    } else if (theme === 'Cars') {
+      return cars.cars;
+    } else if (theme === 'Foods') {
+      return food.food;
     }
 
-    const [data, error] = await getRickAndMortyPictures([...ramChars]);
-    if (!error) images = data.map((char) => char.image);
-  } else if (theme === "Art") {
-    // LOCAL FETCH TO painting.json
-    return paintings.paintings;
-  } else if (theme === "Cars") {
-    // LOCAL FETCH TO cars.json
-    return cars.cars;
-  } else if (theme === "Foods") {
-    // LOCAL FETCH TO food.json
-    return food.food;
+    return images;
+  } catch (error) {
+    console.error('Error fetching images:', error);
+    throw error; // Rethrow to handle in calling function
   }
-  return images;
 };
 
 //THESE ARE THE OLD SET OF FUNCTIONALITIES

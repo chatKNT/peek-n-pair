@@ -1,27 +1,21 @@
 /** @format */
-import { Link } from "react-router-dom";
-import Button from "../components/Button.jsx";
-import { useEffect, useState } from "react";
+import { Link, useLocation } from 'react-router-dom';
+import Button from '../components/Button.jsx';
+import { useEffect, useState } from 'react';
+import { fetchGameImages } from '../../adapters/gameLogic.js'; // Import your game logic function
+import ThemeToggle from '../components/ThemeToggle.jsx';
 
-import cars from "../../local-themes/cars.json";
-import food from "../../local-themes/food.json";
-import paintings from "../../local-themes/painting.json";
+const Game = ({ userSelections }) => {
+  const location = useLocation();
+  // Fallback to location state if props are empty (e.g., page refresh)
+  const finalSelections = userSelections || location.state;
 
-// exported function that's going to rendered inside of App.jsx
-const Game = () => {
-  // Initialize with single set of paintings (not duplicated yet)
   const [cards, setCards] = useState([]);
-  //tracks flipped cards
-  //temporarily stores the id of the flipped cards
   const [flipped, setFlipped] = useState([]);
-  //if two cards are matched then this state will update
-  //this is storing the id's of the matched cards
   const [solved, setSolved] = useState([]);
-  //gameboard, if two cards are clicked, then it will be disabled (lockboard)
   const [disabled, setDisabled] = useState(false);
-  //if all cards are solved then the game will end
-  //tracks the state of won
   const [won, setWon] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fisher-Yates shuffle algorithm
   const shuffleArray = (array) => {
@@ -33,40 +27,52 @@ const Game = () => {
     return newArray;
   };
 
-  const shuffleCards = () => {
-    // Get the 8 objects
-    /*change baseCards to test the cars/ painting/ food
-    - cars.cars
-    - food.food
-    - paintings.paintings
-    */
-
-    const baseCards = paintings.paintings;
-    // Create pairs of 8 and give them an id
-    const pairedCards = [...baseCards, ...baseCards].map((card, index) => ({
-      ...card,
-      id: index, // id for each card
-    }));
-
-    const shuffledCards = shuffleArray(pairedCards);
-
-    // Update all relevant states when the game restarts
-    setCards(shuffledCards);
-    setFlipped([]);
-    setSolved([]);
-    setWon(false);
-    setDisabled(false);
-  };
-
+  // Initialize game based on user selections
   useEffect(() => {
-    shuffleCards();
-  }, []);
+    const initializeGame = async () => {
+      try {
+        setIsLoading(true);
+
+        // Fetch images based on user selections
+        const images = await fetchGameImages(
+          finalSelections.theme,
+          finalSelections.difficulty
+        );
+
+        // Create card pairs and shuffle
+        // When creating card pairs
+        const baseCards = images.map((item, index) => ({
+          id: index,
+          image: item.image,
+          name: item.name,
+        }));
+
+        const pairedCards = [...baseCards, ...baseCards].map((card, index) => ({
+          ...card,
+          id: index,
+        }));
+
+        setCards(shuffleArray(pairedCards));
+        setFlipped([]);
+        setSolved([]);
+        setWon(false);
+        setDisabled(false);
+      } catch (error) {
+        console.error('Error initializing game:', error);
+        // Handle error state here
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (finalSelections) {
+      initializeGame();
+    }
+  }, [finalSelections]);
 
   // Check if game is won
   useEffect(() => {
-    //cards.length * 2 is cards(array of 8 objects) * 2 = 16
-    //solved is a pair of cards that has been matched so the total length of all solved should be 8
-    if (solved.length > 0 && solved.length === (cards.length * 2) / 2) {
+    if (cards.length > 0 && solved.length === cards.length) {
       setWon(true);
     }
   }, [solved, cards]);
@@ -130,17 +136,29 @@ const Game = () => {
     }
   };
 
+  const handlePlayAgain = () => {
+    // Reshuffle existing cards
+    setCards(shuffleArray([...cards]));
+    setFlipped([]);
+    setSolved([]);
+    setWon(false);
+    setDisabled(false);
+  };
+
+  if (isLoading) {
+    return <div className="loading">Loading game...</div>;
+  }
+
   return (
-    <div>
+    <div className="page-background">
       <div className="game-page-body">
         <div className="gamepage-btn-container fixed-top">
-          <Button text={"Rules"} className={"game-page-controls"} />
+          <Button text={'Rules'} className={'game-page-controls'} />
           <Link to="/options">
-            <Button text={"Start Over"} className={"game-page-controls"} />
+            <Button text={'Start Over'} className={'game-page-controls'} />
           </Link>
-          <Button text={"Dark Mode"} className={"game-page-controls"} />
+          <ThemeToggle />
         </div>
-
         <div className="game-page-backdrop">
           <div className="grid-container">
             {cards.map((item) => {
@@ -148,7 +166,7 @@ const Game = () => {
                 flipped.includes(item.id) || solved.includes(item.id);
               return (
                 <div
-                  className={`card-image ${isFlipped ? "flipped" : ""}`}
+                  className={`card-image ${isFlipped ? 'flipped' : ''}`}
                   key={item.id}
                   onClick={() => handleClick(item.id)}
                 >
@@ -172,10 +190,11 @@ const Game = () => {
 
         {/* Win message */}
         {/* Syntax: when won is set to true, this div will pop up  */}
+        {/* Updated Play Again button */}
         {won && (
           <div className="win-div">
             <h2 className="win-h2">You won!</h2>
-            <button className="play-again-btn" onClick={shuffleCards}>
+            <button className="play-again-btn" onClick={handlePlayAgain}>
               Play Again?
             </button>
           </div>
