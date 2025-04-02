@@ -1,8 +1,8 @@
 /** @format */
-import { useState } from 'react';
-import Button from '../components/Button.jsx';
-import { Link, useNavigate } from 'react-router-dom';
-import ThemeToggle from '../components/ThemeToggle.jsx';
+import { useState } from "react";
+import Button from "../components/Button.jsx";
+import { Link, useNavigate } from "react-router-dom";
+import ThemeToggle from "../components/ThemeToggle.jsx";
 
 const Options = ({ onOptionsSubmit }) => {
   const [dropdowns, setDropdowns] = useState({
@@ -14,10 +14,10 @@ const Options = ({ onOptionsSubmit }) => {
 
   // Consolidated form state
   const [formData, setFormData] = useState({
-    category: '',
-    theme: '',
-    difficulty: '',
-    trackTime: 'No', // Default value
+    category: "",
+    theme: "",
+    difficulty: "",
+    trackTime: "No", // Default value
   });
 
   const navigate = useNavigate();
@@ -33,8 +33,8 @@ const Options = ({ onOptionsSubmit }) => {
     setFormData((prev) => {
       const newData = { ...prev, [field]: value };
       // Reset dependent fields when category changes
-      if (field === 'category') {
-        newData.theme = '';
+      if (field === "category") {
+        newData.theme = "";
       }
       return newData;
     });
@@ -43,18 +43,18 @@ const Options = ({ onOptionsSubmit }) => {
 
   const getThemes = () => {
     switch (formData.category) {
-      case 'Animals':
-        return ['Dogs'];
-      case 'Movies/Shows':
-        return ['Rick and Morty'];
-      case 'Miscellaneous':
-        return ['Art', 'Cars', 'Foods'];
+      case "Animals":
+        return ["Dogs"];
+      case "Movies/Shows":
+        return ["Rick and Morty"];
+      case "Miscellaneous":
+        return ["Art", "Cars", "Foods"];
       default:
         return [];
     }
   };
 
-  const getDifficulties = () => ['Easy', 'Medium', 'Hard'];
+  const getDifficulties = () => ["Easy", "Medium", "Hard"];
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -69,14 +69,14 @@ const Options = ({ onOptionsSubmit }) => {
 
     // If valid, proceed
     onOptionsSubmit(formData);
-    navigate('/game', { state: formData });
+    navigate("/game", { state: formData });
   };
 
   return (
     <div className="options-container">
       <div className="options-navbar">
         <Link to="/">
-          <Button text={'HOME'} className={'home-button'} />
+          <Button text={"HOME"} className={"home-button"} />
         </Link>
         <ThemeToggle />
       </div>
@@ -100,7 +100,7 @@ const Options = ({ onOptionsSubmit }) => {
             <p className="error">Please select a difficulty</p>
           )}
 
-          <Button type="submit" text={'CONFIRM'} className={'confirm-button'} />
+          <Button type="submit" text={"CONFIRM"} className={"confirm-button"} />
         </div>
 
         <div className="options-preview"></div>
@@ -108,27 +108,27 @@ const Options = ({ onOptionsSubmit }) => {
         {/* Categories Dropdown */}
         <div className="option-group">
           <Button
-            text={'Categories'}
-            onClick={() => toggleDropdown('categories')}
-            className={'option-button categories-button'}
+            text={"Categories"}
+            onClick={() => toggleDropdown("categories")}
+            className={"option-button categories-button"}
           />
           {dropdowns.categories && (
             <div className="dropdown">
               <button
                 type="button"
-                onClick={() => handleSelect('category', 'Animals')}
+                onClick={() => handleSelect("category", "Animals")}
               >
                 Animals
               </button>
               <button
                 type="button"
-                onClick={() => handleSelect('category', 'Movies/Shows')}
+                onClick={() => handleSelect("category", "Movies/Shows")}
               >
                 Movies/Shows
               </button>
               <button
                 type="button"
-                onClick={() => handleSelect('category', 'Miscellaneous')}
+                onClick={() => handleSelect("category", "Miscellaneous")}
               >
                 Miscellaneous
               </button>
@@ -139,9 +139,9 @@ const Options = ({ onOptionsSubmit }) => {
         {/* Theme Dropdown */}
         <div className="option-group">
           <Button
-            text={'Theme'}
-            onClick={() => toggleDropdown('theme')}
-            className={'option-button theme-button'}
+            text={"Theme"}
+            onClick={() => toggleDropdown("theme")}
+            className={"option-button theme-button"}
             disabled={!formData.category}
           />
           {dropdowns.theme && formData.category && (
@@ -150,7 +150,7 @@ const Options = ({ onOptionsSubmit }) => {
                 <button
                   type="button"
                   key={theme}
-                  onClick={() => handleSelect('theme', theme)}
+                  onClick={() => handleSelect("theme", theme)}
                 >
                   {theme}
                 </button>
@@ -162,9 +162,9 @@ const Options = ({ onOptionsSubmit }) => {
         {/* Difficulty Dropdown */}
         <div className="option-group">
           <Button
-            text={'Difficulty'}
-            onClick={() => toggleDropdown('difficulties')}
-            className={'option-button difficulty-button'}
+            text={"Difficulty"}
+            onClick={() => toggleDropdown("difficulties")}
+            className={"option-button difficulty-button"}
           />
           {dropdowns.difficulties && (
             <div className="dropdown">
@@ -172,7 +172,7 @@ const Options = ({ onOptionsSubmit }) => {
                 <button
                   type="button"
                   key={difficulty}
-                  onClick={() => handleSelect('difficulty', difficulty)}
+                  onClick={() => handleSelect("difficulty", difficulty)}
                 >
                   {difficulty}
                 </button>
@@ -184,21 +184,21 @@ const Options = ({ onOptionsSubmit }) => {
         {/* Track Time Dropdown */}
         <div className="option-group">
           <Button
-            text={'Track Time?'}
-            onClick={() => toggleDropdown('time')}
-            className={'option-button track-time-button'}
+            text={"Track Time?"}
+            onClick={() => toggleDropdown("time")}
+            className={"option-button track-time-button"}
           />
           {dropdowns.time && (
             <div className="dropdown">
               <button
                 type="button"
-                onClick={() => handleSelect('trackTime', 'Yes')}
+                onClick={() => handleSelect("trackTime", "Yes")}
               >
                 Yes
               </button>
               <button
                 type="button"
-                onClick={() => handleSelect('trackTime', 'No')}
+                onClick={() => handleSelect("trackTime", "No")}
               >
                 No
               </button>

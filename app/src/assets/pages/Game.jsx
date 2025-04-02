@@ -1,9 +1,9 @@
 /** @format */
-import { Link, useLocation } from 'react-router-dom';
-import Button from '../components/Button.jsx';
-import { useEffect, useState } from 'react';
-import { fetchGameImages } from '../../adapters/gameLogic.js'; // Import your game logic function
-import ThemeToggle from '../components/ThemeToggle.jsx';
+import { Link, useLocation } from "react-router-dom";
+import Button from "../components/Button.jsx";
+import { useEffect, useState } from "react";
+import { fetchGameImages } from "../../adapters/gameLogic.js"; // Import your game logic function
+import ThemeToggle from "../components/ThemeToggle.jsx";
 
 const Game = ({ userSelections }) => {
   const location = useLocation();
@@ -58,7 +58,7 @@ const Game = ({ userSelections }) => {
         setWon(false);
         setDisabled(false);
       } catch (error) {
-        console.error('Error initializing game:', error);
+        console.error("Error initializing game:", error);
         // Handle error state here
       } finally {
         setIsLoading(false);
@@ -153,9 +153,9 @@ const Game = ({ userSelections }) => {
     <div className="page-background">
       <div className="game-page-body">
         <div className="gamepage-btn-container fixed-top">
-          <Button text={'Rules'} className={'game-page-controls'} />
+          <Button text={"Rules"} className={"game-page-controls"} />
           <Link to="/options">
-            <Button text={'Start Over'} className={'game-page-controls'} />
+            <Button text={"Start Over"} className={"game-page-controls"} />
           </Link>
           <ThemeToggle />
         </div>
@@ -166,7 +166,7 @@ const Game = ({ userSelections }) => {
                 flipped.includes(item.id) || solved.includes(item.id);
               return (
                 <div
-                  className={`card-image ${isFlipped ? 'flipped' : ''}`}
+                  className={`card-image ${isFlipped ? "flipped" : ""}`}
                   key={item.id}
                   onClick={() => handleClick(item.id)}
                 >
