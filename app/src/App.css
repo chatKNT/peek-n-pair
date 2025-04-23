@@ -10,9 +10,35 @@
   width: 100%;
 }
 
+:root {
+  /* Light theme */
+  --primary-color: #a560cc;
+  --secondary-color: #fada30;
+  --background-color: #fefcf3;
+  --text-color: #333;
+  --button-bg: #ffffff;
+  --card-bg: #ffffff;
+  --border-color: #000000;
+}
+
+.dark-theme {
+  /* Dark theme */
+  /* Dark theme */
+  --primary-color: #7d48a3;
+  --secondary-color: #d4b125;
+  --background-color: #2d2d2d;
+  --text-color: #ffffff;
+  --button-bg: #3d3d3d;
+  --card-bg: #1a1a1a;
+  --border-color: #ffffff;
+}
+
 /* Default styles (Mobile First) */
 body {
   font-size: 16px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-family: 'Poppins', Arial, sans-serif;
   background-color: #a560cc;
   color: #333;
   font-family: 'Poppins', Arial, sans-serif;
@@ -26,23 +52,23 @@ body {
 }
 
 .page-backdrop {
-  background-color: #fefcf3;
+  background-color: var(--background-color);
   border-radius: 15px;
-  height: 75vh;
+  height: 80vh;
   width: 85vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Align items to the left */
   justify-content: flex-end; /* Push content to the bottom */
-  padding-bottom: 10px; /* Extra space at the bottom */
-  padding-left: 10px; /* Add padding to shift content from the left */
+  padding-bottom: 5px; /* Reduced space at the bottom */
+  padding-left: 5px; /* Reduced padding to shift content from the left */
 }
 
 button {
   font-size: 18px;
   font-weight: bold;
   padding: 15px 18px;
-  margin: 15px;
+  margin: 10px; /* Reduced margin */
   border-radius: 10px;
   cursor: pointer;
   border: none;
@@ -54,7 +80,7 @@ button {
   justify-content: center;
   width: 81vw;
   margin-top: auto;
-  margin-bottom: -55px; /* Adds spacing from the bottom */
+  margin-bottom: -50px; /* Adjusted spacing from the bottom */
 }
 
 .startup-play-button {
@@ -66,13 +92,12 @@ button {
   padding: 8px;
 }
 
-.rules-button {
-  background-color: #6495ed;
+.howto-button {
+  background-color: #6495ed; /* for dev purposes */
   box-shadow: 4px 4px 0px black;
   white-space: nowrap;
   text-align: center;
   display: inline-block;
-  /* width: 28vw; */
 }
 
 .best-times-button {
@@ -81,6 +106,29 @@ button {
   white-space: nowrap;
   text-align: center;
   display: inline-block;
+}
+
+.startup-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.startup-logo {
+  display: flex;
+  align-self: center;
+  justify-items: center;
+  max-width: 90%;
+  max-height: 70vh;
+  min-width: 400px;
+  min-height: 400px;
+  object-fit: contain;
 }
 
 .categories-button,
@@ -92,8 +140,12 @@ button {
   display: inline-block;
 }
 
-.theme-button,
-.track-time-button {
+p {
+  color: var(--text-color);
+  font-size: 11px;
+}
+
+.theme-button {
   background-color: #6495ed;
   box-shadow: 4px 4px 0px black;
   white-space: nowrap;
@@ -101,12 +153,50 @@ button {
   display: inline-block;
 }
 
-.lightdark-button {
+.track-time-button {
+  background-color: #6495ed;
+  box-shadow: 4px 4px 0px black;
+  white-space: nowrap;
+  text-align: center;
+  display: inline-block;
+  position: relative; /* For dropdown positioning */
+}
+
+.track-time-dropdown {
   position: absolute;
-  top: 20px;
+  top: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  display: none; /* Initially hidden */
+  flex-direction: column;
+  z-index: 10;
+}
+
+.track-time-button:hover .track-time-dropdown {
+  display: flex; /* Show dropdown on hover */
+}
+
+.track-time-dropdown button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.track-time-dropdown button:hover {
+  background-color: lightgray;
+}
+
+.lightdark-button {
+  position: fixed;
+  top: 1vb;
   right: 20px;
-  background-color: #fada30;
-  color: #000000;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   padding: 8px 15px;
   font-size: 14px;
   border-radius: 4px;
@@ -118,44 +208,177 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  position: relative;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 60px; /* Space for the button container */
+  box-sizing: border-box;
 }
 
 .gamepage-btn-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 15px; /* Reduced space between buttons */
   width: 100%;
   padding: 10px 0;
-  position: absolute;
-  top: 0;
+  z-index: 10; /* Ensure it stays above other content */
 }
 
 .game-page-controls {
-  background-color: #fada30;
-  color: #000000;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
   padding: 8px 15px;
   font-size: 14px;
   border-radius: 8px;
-  margin-top: 10px;
+  border: none;
+  cursor: pointer;
 }
 
 .game-page-backdrop {
   background-color: #fefcf3;
   border-radius: 15px;
-  height: 75vh;
-  width: 85vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding-bottom: 10px;
-  position: absolute; /* Ensures it is centered */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Centers it perfectly */
+  justify-content: center;
+  padding: 20px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: auto; /* Let it grow with content */
+  max-width: 90%; /* Prevent it from getting too wide */
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(80px, 1fr)); /* Responsive columns */
+  gap: 10px; /* Space between cards */
+  width: 100%;
+  max-width: calc(100px * 4 + 10px * 3); /* Max width based on card count */
+  margin: 0 auto;
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 1/1; /* Maintain square shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+  position: relative;
+  /*  */
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.card-image:hover {
+  transform: scale(1.03);
+}
+
+.card-back,
+.card-front {
+  background-color: var(--primary-color);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hides the back face when flipped */
+  transition: transform 0.6s ease; /* Smooth flip animation */
+  border-radius: 8px; /* Match your existing border-radius */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back {
+  background-color: #4a6fa5; /* Example back color - change as needed */
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+}
+
+/* Flip animation states */
+.card-image.flipped .card-back {
+  transform: rotateY(180deg);
+}
+
+.card-image.flipped .card-front {
+  transform: rotateY(0deg);
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* New back face content styling (customize as needed) */
+.card-back::after {
+  /* content: "?";  */
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Disabled state during animations */
+.card-image.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(4, minmax(60px, 1fr));
+    gap: 8px;
+  }
+
+  .game-page-controls {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-container {
+    max-width: calc(120px * 4 + 15px * 3); /* Larger cards on big screens */
+  }
+}
+
+/* Won div */
+.win-div {
+  border: yellow solid;
+  background: var(--background-color);
+  border-color: var(--secondary-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.play-again-btn {
+  background-color: #fada30;
+  color: #000000;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-top: 0px;
+}
+
+.play-again-btn button:hover {
+  background-color: green;
+}
+
+/* End of game page styling */
 
 .peeknpair-logo {
   /* display: flex; */
@@ -168,21 +391,32 @@ button {
 /* Options.jsx Page Styling */
 .option-button {
   margin: 0.3rem;
-  width: 40vw;
-  font-size: 1rem;
+  width: 30vw;
+  font-size: 0.9rem;
 }
 
-.options-navbar {
+/* .options-navbar {
   display: flex;
   justify-content: space-between;
   padding: 0;
   top: 0;
   left: 0;
-}
+} */
 
-.options-navbar .lightdark-button {
+/* .options-navbar .lightdark-button {
   padding: 10px 18px;
   margin-top: 0;
+} */
+
+.home-button {
+  position: fixed;
+  top: 1vb;
+  left: 20px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 4px;
 }
 
 /* Option group styling */
@@ -197,7 +431,8 @@ button {
 .dropdown {
   position: absolute;
   top: 40px;
-  background-color: white;
+  background-color: var(--button-bg);
+  color: var(--text-color);
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -235,29 +470,45 @@ button {
   margin-top: 20px;
 }
 
-.grid-container {
-  width: 80%;
-  height: 300px;
-  border: 4px solid black;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
 .selection-container {
   display: flex;
   flex-direction: column;
   align-self: center;
   justify-content: flex-end; /* Ensures the Confirm button stays at the bottom */
-  background-color: black;
+  background-color: var(--background-color);
   width: 35vw; /* Increase size */
   height: 35vh; /* Increase size */
-  border: 15px solid #fada30;
+  border: 15px solid var(--secondary-color);
   border-radius: 10px;
   padding: 10px;
   position: relative;
+  box-shadow: -8px 8px 0px black;
+  margin-bottom: auto;
+}
+
+.confirm-button {
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  /* align-self: center; */
+  justify-self: center;
+}
+
+/* How-To */
+.howTo-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 2px black;
+  background-color: rgb(228, 228, 228);
+}
+
+.how-to-btn {
+  background-color: #fada30;
+  color: #000000;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 4px;
 }
 
 /* DON'T TOUCH THIS YET UNTIL MOBILE DESIGN IS FINISHED FIRST  */

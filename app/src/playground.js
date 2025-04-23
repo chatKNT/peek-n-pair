@@ -7,26 +7,28 @@ import {
   getDogPictures,
 } from './adapters/apiAdapters.js';
 
-const testHandleFetch = async () => {
-  const [data, error] = await handleFetch(
-    'https://dog.ceo/api/breeds/image/random'
-  );
-  if (error) {
-    return console.log(error);
-  }
-  console.log(data);
-};
+// const testHandleFetch = async () => {
+//   const [data, error] = await handleFetch(
+//     'https://dog.ceo/api/breeds/image/random'
+//   );
+//   if (error) {
+//     return console.log(error);
+//   }
+//   console.log(data);
+// };
 
 // Test your adapter functions here
 const testAdapters = async () => {
-  const triviaTuple = await getTriviaQuestions(8, 'easy');
-  const ramTuple = await getRickAndMortyPictures([1, 2, 3, 4, 5]);
-  const dogTuple = await getDogPictures(8);
+  // const [triviaTuple, triviaError] = await getTriviaQuestions(8, 'easy');
+  const [ramTuple, ramError] = await getRickAndMortyPictures([
+    4, 5, 8, 2, 67, 9,
+  ]);
+  // const [dogTuple, dogError] = await getDogPictures(8);
 
-  console.log(triviaTuple);
-  //   console.log(ramTuple);
-  //   console.log(dogTuple);
+  // console.log(triviaTuple);
+  console.log(ramTuple);
+  // console.log(dogTuple);
 };
 
-// testHandleFetch();
+// // testHandleFetch();
 testAdapters();
